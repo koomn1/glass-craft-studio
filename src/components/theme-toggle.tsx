@@ -1,20 +1,19 @@
 import { motion } from "framer-motion";
-import { Moon, Sun, Monitor } from "lucide-react";
+import { Moon, Sun } from "lucide-react";
 import { useTheme } from "./theme-provider";
 
 const options = [
   { value: "light", icon: Sun, label: "Light" },
-  { value: "system", icon: Monitor, label: "System" },
   { value: "dark", icon: Moon, label: "Dark" },
 ] as const;
 
 export function ThemeToggle() {
-  const { theme, setTheme } = useTheme();
+  const { resolved, setTheme } = useTheme();
   return (
     <div className="glass relative flex items-center gap-1 rounded-full p-1" role="radiogroup" aria-label="Theme">
       {options.map((opt) => {
         const Icon = opt.icon;
-        const active = theme === opt.value;
+        const active = resolved === opt.value;
         return (
           <button
             key={opt.value}
