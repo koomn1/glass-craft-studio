@@ -2,7 +2,11 @@ import { useState } from "react";
 import { TiltCard } from "@/components/tilt-card";
 import { Reveal } from "@/components/reveal";
 import { ProjectModal, type ProjectDetail } from "@/components/project-modal";
+import { PhotoStrip } from "@/components/photo-strip";
 import { Stethoscope, Microscope, HeartPulse, Syringe, Award, BookOpen } from "lucide-react";
+import photoSchool from "@/assets/photos/photo-school.jpg.asset.json";
+import photoWalk from "@/assets/photos/photo-walk.webp.asset.json";
+import photoStreet from "@/assets/photos/photo-street.webp.asset.json";
 
 const cases: ProjectDetail[] = [
   {
@@ -105,6 +109,15 @@ export function VetSection() {
           );
         })}
       </div>
+
+      <PhotoStrip
+        title="On the ground"
+        items={[
+          { src: photoSchool.url, alt: "At Regent British School", caption: "Academic roots", aspect: "square" },
+          { src: photoWalk.url, alt: "Outside the campus", caption: "Daily reflection", aspect: "portrait" },
+          { src: photoStreet.url, alt: "Walking through Sky compound", caption: "Field walks", aspect: "portrait" },
+        ]}
+      />
 
       <ProjectModal project={active} onClose={() => setActive(null)} />
     </div>

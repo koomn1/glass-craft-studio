@@ -1,5 +1,10 @@
 import { Reveal } from "@/components/reveal";
+import { PhotoStrip } from "@/components/photo-strip";
 import { Briefcase, Megaphone, Bot, Truck, Sparkles, HeartHandshake } from "lucide-react";
+import photoCafe from "@/assets/photos/photo-cafe.jpg.asset.json";
+import photoMoto from "@/assets/photos/photo-moto.jpg.asset.json";
+import photoMirror from "@/assets/photos/photo-mirror.jpg.asset.json";
+import photoMirror2 from "@/assets/photos/photo-mirror2.jpg.asset.json";
 
 const current = {
   company: "Zaghdan Company for Import and Export of Perfumes",
@@ -115,6 +120,17 @@ export function ExperienceSection() {
           </div>
         </div>
       </Reveal>
+
+      <PhotoStrip
+        title="Moments along the way"
+        variant="mosaic"
+        items={[
+          { src: photoCafe.url, alt: "On Boulevard street", aspect: "square" },
+          { src: photoMoto.url, alt: "Evening ride", aspect: "square" },
+          { src: photoMirror.url, alt: "Self portrait", aspect: "square" },
+          { src: photoMirror2.url, alt: "Self portrait, side", aspect: "square" },
+        ]}
+      />
     </div>
   );
 }

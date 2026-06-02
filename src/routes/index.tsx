@@ -15,6 +15,7 @@ import { SkillsSection } from "@/components/sections/skills-section";
 import { ExperienceSection } from "@/components/sections/experience-section";
 import { ContactSection } from "@/components/sections/contact-section";
 import { AssistantSection } from "@/components/sections/assistant-section";
+import logo from "@/assets/yb-logo.png.asset.json";
 
 const SITE_TITLE = "Dr. Youssef Badawy — Veterinary Medicine, AI & Storytelling";
 const SITE_DESC =
@@ -73,12 +74,13 @@ export const Route = createFileRoute("/")({
   ),
 });
 
+// Reordered: Vet → Experience → AI/Dev → Skills → Video → Assistant → Contact
 const TABS: TabItem[] = [
-  { id: "vet", label: "Veterinary", icon: Stethoscope },
-  { id: "dev", label: "AI & Dev", icon: Cpu },
-  { id: "video", label: "Video", icon: Film },
-  { id: "skills", label: "Skills", icon: Wrench },
+  { id: "vet", label: "Vet", icon: Stethoscope },
   { id: "experience", label: "Experience", icon: Briefcase },
+  { id: "dev", label: "AI", icon: Cpu },
+  { id: "skills", label: "Skills", icon: Wrench },
+  { id: "video", label: "Video", icon: Film },
   { id: "assistant", label: "Assistant", icon: Sparkles },
   { id: "contact", label: "Contact", icon: Mail },
 ];
@@ -93,12 +95,32 @@ function Index() {
 
   return (
     <div className="relative min-h-screen">
-      <header className="pointer-events-none fixed top-4 left-4 right-4 z-50 flex items-center justify-between">
-        <a href="#" className="glass pointer-events-auto inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-sm font-semibold">
-          <span className="grid h-6 w-6 place-items-center rounded-full text-[10px] font-bold text-primary-foreground" style={{ background: "linear-gradient(135deg, var(--teal), var(--teal-bright))" }}>YB</span>
-          <span className="hidden sm:inline">Youssef Badawy</span>
+      {/* Sticky header: logo + responsive center tab rail + theme toggle */}
+      <header className="pointer-events-none fixed top-3 left-3 right-3 z-50 flex items-center gap-2 sm:top-4 sm:left-4 sm:right-4 sm:gap-3">
+        <a
+          href="#"
+          className="glass pointer-events-auto inline-flex shrink-0 items-center gap-2 rounded-full px-2 py-1.5 text-sm font-semibold"
+          aria-label="Youssef Badawy — home"
+        >
+          <img
+            src={logo.url}
+            alt=""
+            aria-hidden="true"
+            width={28}
+            height={28}
+            className="h-7 w-7 rounded-full object-contain"
+          />
+          <span className="hidden pr-1 sm:inline">Youssef Badawy</span>
         </a>
-        <div className="pointer-events-auto">
+
+        {/* Center: tabs rail that flexes to fill the space between logo and toggle */}
+        <div className="pointer-events-auto min-w-0 flex-1">
+          <div className="mx-auto w-full max-w-full">
+            <GlassTabs items={TABS} active={active} onChange={setActive} compact />
+          </div>
+        </div>
+
+        <div className="pointer-events-auto shrink-0">
           <ThemeToggle />
         </div>
       </header>
@@ -107,9 +129,7 @@ function Index() {
         <Hero onExplore={scrollToTabs} />
 
         <div ref={tabsRef} className="mx-auto max-w-6xl px-4 pt-6">
-          <GlassTabs items={TABS} active={active} onChange={setActive} />
-
-          <section className="relative mt-10 pb-24" id={`panel-${active}`} role="tabpanel" aria-labelledby={`tab-${active}`}>
+          <section className="relative mt-2 pb-24" id={`panel-${active}`} role="tabpanel" aria-labelledby={`tab-${active}`}>
             <AnimatePresence mode="wait">
               <motion.div
                 key={active}
@@ -119,10 +139,10 @@ function Index() {
                 transition={{ duration: 0.45, ease: [0.2, 0.8, 0.2, 1] }}
               >
                 {active === "vet" && <VetSection />}
-                {active === "dev" && <DevSection />}
-                {active === "video" && <VideoSection />}
-                {active === "skills" && <SkillsSection />}
                 {active === "experience" && <ExperienceSection />}
+                {active === "dev" && <DevSection />}
+                {active === "skills" && <SkillsSection />}
+                {active === "video" && <VideoSection />}
                 {active === "assistant" && <AssistantSection />}
                 {active === "contact" && <ContactSection />}
               </motion.div>

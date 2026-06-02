@@ -2,7 +2,10 @@ import { useState } from "react";
 import { TiltCard } from "@/components/tilt-card";
 import { Reveal } from "@/components/reveal";
 import { ProjectModal, type ProjectDetail } from "@/components/project-modal";
+import { PhotoStrip } from "@/components/photo-strip";
 import { Brain, Code2, Sparkles, Workflow, Database, Cpu } from "lucide-react";
+import photoHotel from "@/assets/photos/photo-hotel.jpg.asset.json";
+import photoSitting from "@/assets/photos/photo-sitting.webp.asset.json";
 
 const projects: ProjectDetail[] = [
   {
@@ -111,6 +114,15 @@ export function DevSection() {
           );
         })}
       </div>
+
+      <PhotoStrip
+        title="Where ideas meet keyboards"
+        variant="duo"
+        items={[
+          { src: photoHotel.url, alt: "Standing in a hotel lobby", caption: "Between meetings", aspect: "portrait" },
+          { src: photoSitting.url, alt: "Working from a cafe", caption: "Quiet build sessions", aspect: "landscape" },
+        ]}
+      />
 
       <ProjectModal project={active} onClose={() => setActive(null)} />
     </div>
