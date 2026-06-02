@@ -5,7 +5,7 @@ import { ProjectModal, type ProjectDetail } from "@/components/project-modal";
 import { PhotoStrip } from "@/components/photo-strip";
 import { Brain, Code2, Sparkles, Workflow, Database, Cpu } from "lucide-react";
 import photoHotel from "@/assets/photos/photo-hotel.jpg.asset.json";
-import photoSitting from "@/assets/photos/photo-sitting.webp.asset.json";
+import photoMirror2 from "@/assets/photos/photo-mirror2.jpg.asset.json";
 
 const projects: ProjectDetail[] = [
   {
@@ -120,7 +120,7 @@ export function DevSection() {
         variant="duo"
         items={[
           { src: photoHotel.url, alt: "Standing in a hotel lobby", caption: "Between meetings", aspect: "portrait" },
-          { src: photoSitting.url, alt: "Working from a cafe", caption: "Quiet build sessions", aspect: "landscape" },
+          { src: photoMirror2.url, alt: "Reflection moment", caption: "Quiet build sessions", aspect: "portrait" },
         ]}
       />
 

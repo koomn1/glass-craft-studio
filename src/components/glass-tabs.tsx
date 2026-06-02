@@ -59,7 +59,7 @@ export function GlassTabs({ items, active, onChange, compact = false }: GlassTab
       aria-orientation="horizontal"
       className={
         compact
-          ? "glass-strong flex max-w-full items-center gap-0.5 overflow-x-auto rounded-full p-1 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+          ? "glass-strong flex w-full items-center justify-between gap-1 rounded-full p-1"
           : "glass-strong sticky top-20 z-30 mx-auto flex w-full max-w-full items-center gap-1 overflow-x-auto rounded-full p-1.5 sm:top-4 sm:w-fit"
       }
     >
@@ -81,7 +81,7 @@ export function GlassTabs({ items, active, onChange, compact = false }: GlassTab
             onKeyDown={(e) => onKeyDown(e, i)}
             className={
               compact
-                ? `relative shrink-0 rounded-full p-2 text-xs font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-ring lg:px-3 lg:py-1.5 ${
+                ? `relative flex-1 min-w-0 rounded-full px-2 py-2 text-xs font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:px-3 lg:py-1.5 ${
                     isActive ? "text-primary-foreground" : "text-foreground/70 hover:text-foreground"
                   }`
                 : `relative shrink-0 rounded-full px-3 py-2 text-xs font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:px-4 sm:text-sm md:px-5 ${
@@ -97,9 +97,9 @@ export function GlassTabs({ items, active, onChange, compact = false }: GlassTab
                 aria-hidden="true"
               />
             )}
-            <span className="relative flex items-center gap-1.5">
-              <Icon className="h-4 w-4" aria-hidden="true" />
-              <span className={compact ? "hidden lg:inline" : "hidden md:inline"}>{item.label}</span>
+            <span className="relative flex items-center justify-center gap-1.5 truncate">
+              <Icon className="h-4 w-4 shrink-0" aria-hidden="true" />
+              <span className={compact ? "hidden truncate md:inline" : "hidden truncate md:inline"}>{item.label}</span>
             </span>
           </button>
         );
