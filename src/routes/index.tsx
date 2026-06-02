@@ -93,12 +93,14 @@ function Index() {
 
   return (
     <div className="relative min-h-screen">
-      <header className="fixed top-4 left-4 right-4 z-50 flex items-center justify-between">
-        <a href="#" className="glass inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-sm font-semibold">
+      <header className="pointer-events-none fixed top-4 left-4 right-4 z-50 flex items-center justify-between">
+        <a href="#" className="glass pointer-events-auto inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-sm font-semibold">
           <span className="grid h-6 w-6 place-items-center rounded-full text-[10px] font-bold text-primary-foreground" style={{ background: "linear-gradient(135deg, var(--teal), var(--teal-bright))" }}>YB</span>
           <span className="hidden sm:inline">Youssef Badawy</span>
         </a>
-        <ThemeToggle />
+        <div className="pointer-events-auto">
+          <ThemeToggle />
+        </div>
       </header>
 
       <main className="pt-24">
