@@ -1,9 +1,12 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { TiltCard } from "@/components/tilt-card";
 import { Reveal } from "@/components/reveal";
 import { ProjectModal, type ProjectDetail } from "@/components/project-modal";
-import { PhotoStrip } from "@/components/photo-strip";
-import { Stethoscope, Microscope, HeartPulse, Syringe, Award, BookOpen } from "lucide-react";
+import {
+  Stethoscope, Microscope, HeartPulse, Syringe, Award, BookOpen,
+  MapPin, Languages, Compass, Coffee,
+} from "lucide-react";
 import photoSchool from "@/assets/photos/photo-school.jpg.asset.json";
 import photoWalk from "@/assets/photos/photo-walk.webp.asset.json";
 import photoStreet from "@/assets/photos/photo-street.webp.asset.json";
