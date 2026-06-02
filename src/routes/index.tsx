@@ -99,18 +99,24 @@ function Index() {
       <header className="pointer-events-none fixed top-3 left-3 right-3 z-50 flex items-center gap-2 sm:top-4 sm:left-4 sm:right-4 sm:gap-3">
         <a
           href="#"
-          className="glass pointer-events-auto inline-flex shrink-0 items-center gap-2 rounded-full px-2 py-1.5 text-sm font-semibold"
+          className="glass-strong pointer-events-auto inline-flex shrink-0 items-center gap-2 rounded-full p-1 pr-2 text-sm font-semibold shadow-lg ring-1 ring-border/60 sm:gap-2.5 sm:pr-3"
           aria-label="Youssef Badawy — home"
+          style={{ boxShadow: "0 6px 24px -8px color-mix(in oklab, var(--teal) 35%, transparent)" }}
         >
-          <img
-            src={logo.url}
-            alt=""
-            aria-hidden="true"
-            width={28}
-            height={28}
-            className="h-7 w-7 rounded-full bg-white object-contain p-0.5 ring-1 ring-border"
-          />
-          <span className="hidden pr-1 sm:inline">Youssef Badawy</span>
+          <span
+            className="grid h-8 w-8 place-items-center rounded-full bg-white ring-2 ring-primary/70 sm:h-9 sm:w-9"
+            style={{ boxShadow: "0 2px 10px color-mix(in oklab, var(--teal) 35%, transparent)" }}
+          >
+            <img
+              src={logo.url}
+              alt=""
+              aria-hidden="true"
+              width={32}
+              height={32}
+              className="h-6 w-6 object-contain sm:h-7 sm:w-7"
+            />
+          </span>
+          <span className="hidden sm:inline">Youssef Badawy</span>
         </a>
 
         {/* Center: tabs rail that flexes to fill the space between logo and toggle */}
