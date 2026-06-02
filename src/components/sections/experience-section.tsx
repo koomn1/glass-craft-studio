@@ -1,5 +1,5 @@
+import { motion } from "framer-motion";
 import { Reveal } from "@/components/reveal";
-import { PhotoStrip } from "@/components/photo-strip";
 import { Briefcase, Megaphone, Bot, Truck, Sparkles, HeartHandshake } from "lucide-react";
 import photoCafe from "@/assets/photos/photo-cafe.jpg.asset.json";
 import photoMoto from "@/assets/photos/photo-moto.jpg.asset.json";
