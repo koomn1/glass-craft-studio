@@ -113,14 +113,83 @@ export function VetSection() {
         })}
       </div>
 
-      <PhotoStrip
-        title="On the ground"
-        items={[
-          { src: photoSchool.url, alt: "At Regent British School", caption: "Academic roots", aspect: "square" },
-          { src: photoWalk.url, alt: "Outside the campus", caption: "Daily reflection", aspect: "portrait" },
-          { src: photoStreet.url, alt: "Walking through Sky compound", caption: "Field walks", aspect: "portrait" },
-        ]}
-      />
+      <Reveal>
+        <div className="grid gap-5 lg:grid-cols-[1.1fr_0.9fr] lg:items-stretch">
+          {/* Animated photo collage — no captions */}
+          <div className="relative h-[360px] sm:h-[420px]">
+            <div
+              className="absolute inset-0 -z-10 rounded-[2rem] blur-3xl opacity-40"
+              style={{ background: "radial-gradient(60% 60% at 50% 50%, var(--teal-bright), transparent 70%)" }}
+              aria-hidden="true"
+            />
+            {[
+              { src: photoSchool.url, alt: "Academic moment", cls: "left-0 top-0 h-[58%] w-[52%]", float: { y: [0, -8, 0] }, dur: 6, rot: -2 },
+              { src: photoWalk.url, alt: "Daily walk", cls: "right-0 top-[8%] h-[48%] w-[42%]", float: { y: [0, 10, 0] }, dur: 7, rot: 2 },
+              { src: photoStreet.url, alt: "Field walk", cls: "left-[16%] bottom-0 h-[52%] w-[60%]", float: { y: [0, -6, 0] }, dur: 8, rot: -1 },
+            ].map((p, i) => (
+              <motion.figure
+                key={p.src}
+                initial={{ opacity: 0, scale: 0.9, rotate: p.rot * 2 }}
+                whileInView={{ opacity: 1, scale: 1, rotate: p.rot }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.7, delay: i * 0.12, ease: [0.2, 0.8, 0.2, 1] }}
+                whileHover={{ scale: 1.04, rotate: 0, zIndex: 5 }}
+                className={`glass-strong group absolute overflow-hidden rounded-[1.75rem] p-1.5 shadow-xl ${p.cls}`}
+              >
+                <motion.div
+                  animate={p.float}
+                  transition={{ duration: p.dur, repeat: Infinity, ease: "easeInOut" }}
+                  className="relative h-full w-full overflow-hidden rounded-[1.4rem]"
+                >
+                  <img
+                    src={p.src}
+                    alt={p.alt}
+                    loading="lazy"
+                    decoding="async"
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.08]"
+                  />
+                  <div
+                    className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                    style={{ background: "linear-gradient(180deg, transparent 50%, color-mix(in oklab, var(--teal) 50%, transparent))" }}
+                  />
+                </motion.div>
+              </motion.figure>
+            ))}
+          </div>
+
+          {/* About-me mini cards — same family as the grid above, lighter rhythm */}
+          <div>
+            <h3 className="mb-3 text-xs font-semibold uppercase tracking-[0.25em] text-primary">A bit about me</h3>
+            <div className="grid grid-cols-2 gap-3">
+              {[
+                { icon: MapPin, label: "Based in", value: "Kafr El-Sheikh, EG" },
+                { icon: Languages, label: "Languages", value: "Arabic · English" },
+                { icon: Compass, label: "Focus", value: "Vet · AI · Storytelling" },
+                { icon: Coffee, label: "Currently", value: "Building & learning" },
+              ].map((c, i) => {
+                const Icon = c.icon;
+                return (
+                  <motion.article
+                    key={c.label}
+                    initial={{ opacity: 0, y: 14 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.45, delay: i * 0.06 }}
+                    whileHover={{ y: -3 }}
+                    className="glass relative overflow-hidden rounded-2xl p-4"
+                  >
+                    <div className="mb-2 inline-grid h-9 w-9 place-items-center rounded-xl glass-subtle">
+                      <Icon className="h-4 w-4 text-primary" aria-hidden="true" />
+                    </div>
+                    <p className="text-[10px] uppercase tracking-widest text-primary/70">{c.label}</p>
+                    <p className="mt-0.5 text-sm font-semibold leading-snug">{c.value}</p>
+                  </motion.article>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </Reveal>
 
       <ProjectModal project={active} onClose={() => setActive(null)} />
     </div>
