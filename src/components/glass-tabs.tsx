@@ -55,7 +55,7 @@ export function GlassTabs({ items, active, onChange }: GlassTabsProps) {
       role="tablist"
       aria-label="Portfolio sections"
       aria-orientation="horizontal"
-      className="glass-strong sticky top-4 z-40 mx-auto flex w-fit max-w-full items-center gap-1 overflow-x-auto rounded-full p-1.5"
+      className="glass-strong sticky top-20 z-30 mx-auto flex w-full max-w-full items-center gap-1 overflow-x-auto rounded-full p-1.5 sm:top-4 sm:w-fit"
     >
       {items.map((item, i) => {
         const Icon = item.icon;
@@ -72,7 +72,7 @@ export function GlassTabs({ items, active, onChange }: GlassTabsProps) {
             tabIndex={isActive ? 0 : -1}
             onClick={() => onChange(item.id)}
             onKeyDown={(e) => onKeyDown(e, i)}
-            className={`relative shrink-0 rounded-full px-4 py-2 text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:px-5 ${
+            className={`relative shrink-0 rounded-full px-3 py-2 text-xs font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:px-4 sm:text-sm md:px-5 ${
               isActive ? "text-primary-foreground" : "text-foreground/70 hover:text-foreground"
             }`}
           >
@@ -86,8 +86,8 @@ export function GlassTabs({ items, active, onChange }: GlassTabsProps) {
             )}
             <span className="relative flex items-center gap-2">
               <Icon className="h-4 w-4" aria-hidden="true" />
-              <span className="hidden sm:inline">{item.label}</span>
-              <span className="sr-only sm:hidden">{item.label}</span>
+              <span className="hidden md:inline">{item.label}</span>
+              <span className="sr-only md:hidden">{item.label}</span>
             </span>
           </button>
         );
