@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Stethoscope, Cpu, Film, Sparkles } from "lucide-react";
+import { Stethoscope, Cpu, Film, Sparkles, Wrench, Briefcase, Mail } from "lucide-react";
 
 import { ThemeProvider } from "@/components/theme-provider";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -11,6 +11,9 @@ import { Hero } from "@/components/hero";
 import { VetSection } from "@/components/sections/vet-section";
 import { DevSection } from "@/components/sections/dev-section";
 import { VideoSection } from "@/components/sections/video-section";
+import { SkillsSection } from "@/components/sections/skills-section";
+import { ExperienceSection } from "@/components/sections/experience-section";
+import { ContactSection } from "@/components/sections/contact-section";
 import { AssistantSection } from "@/components/sections/assistant-section";
 
 const SITE_TITLE = "Dr. Youssef Badawy — Veterinary Medicine, AI & Storytelling";
@@ -74,7 +77,10 @@ const TABS: TabItem[] = [
   { id: "vet", label: "Veterinary", icon: Stethoscope },
   { id: "dev", label: "AI & Dev", icon: Cpu },
   { id: "video", label: "Video", icon: Film },
+  { id: "skills", label: "Skills", icon: Wrench },
+  { id: "experience", label: "Experience", icon: Briefcase },
   { id: "assistant", label: "Assistant", icon: Sparkles },
+  { id: "contact", label: "Contact", icon: Mail },
 ];
 
 function Index() {
@@ -113,7 +119,10 @@ function Index() {
                 {active === "vet" && <VetSection />}
                 {active === "dev" && <DevSection />}
                 {active === "video" && <VideoSection />}
+                {active === "skills" && <SkillsSection />}
+                {active === "experience" && <ExperienceSection />}
                 {active === "assistant" && <AssistantSection />}
+                {active === "contact" && <ContactSection />}
               </motion.div>
             </AnimatePresence>
           </section>
