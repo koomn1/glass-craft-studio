@@ -22,8 +22,9 @@ const markdownComponents = {
       className="text-primary underline underline-offset-2 hover:opacity-80"
     />
   ),
-  code: ({ inline, className, children, ...props }: { inline?: boolean; className?: string; children?: React.ReactNode }) => {
-    if (inline) {
+  code: ({ className, children, ...props }: React.HTMLAttributes<HTMLElement>) => {
+    const isBlock = /language-/.test(className ?? "");
+    if (!isBlock) {
       return (
         <code className="rounded bg-foreground/10 px-1.5 py-0.5 font-mono text-[0.85em]" {...props}>
           {children}
@@ -31,13 +32,19 @@ const markdownComponents = {
       );
     }
     return (
-      <pre className="my-2 overflow-x-auto rounded-xl border border-border/60 bg-foreground/[0.06] p-3">
-        <code className={`font-mono text-xs leading-relaxed ${className ?? ""}`} {...props}>
-          {children}
-        </code>
-      </pre>
+      <code className={`block font-mono text-xs leading-relaxed ${className ?? ""}`} {...props}>
+        {children}
+      </code>
     );
   },
+  pre: ({ children, ...props }: React.HTMLAttributes<HTMLPreElement>) => (
+    <pre
+      {...props}
+      className="my-2 overflow-x-auto rounded-xl border border-border/60 bg-foreground/[0.06] p-3"
+    >
+      {children}
+    </pre>
+  ),
 };
 
 function StreamingSkeleton() {
