@@ -13,13 +13,54 @@ import { DevSection } from "@/components/sections/dev-section";
 import { VideoSection } from "@/components/sections/video-section";
 import { AssistantSection } from "@/components/sections/assistant-section";
 
+const SITE_TITLE = "Dr. Youssef Badawy — Veterinary Medicine, AI & Storytelling";
+const SITE_DESC =
+  "Portfolio of Dr. Youssef Badawy: veterinary practice, applied AI projects, and visual storytelling — wrapped in an iOS-inspired glassmorphism interface.";
+
+const PERSON_JSONLD = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Dr. Youssef Badawy",
+  jobTitle: "Veterinarian & AI Developer",
+  description: SITE_DESC,
+  url: "/",
+  email: "mailto:yo01009950871@gmail.com",
+  telephone: "+201018995002",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Kafr El-Sheikh",
+    addressCountry: "EG",
+  },
+  knowsAbout: ["Veterinary Medicine", "Artificial Intelligence", "Software Development", "Visual Storytelling"],
+};
+
+const WEBSITE_JSONLD = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: SITE_TITLE,
+  url: "/",
+  inLanguage: ["en", "ar"],
+};
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Dr. Youssef Badawy — Veterinary Medicine, AI & Storytelling" },
-      { name: "description", content: "Portfolio of Dr. Youssef Badawy: veterinary practice, applied AI projects, and visual storytelling — wrapped in an iOS-inspired glassmorphism interface." },
-      { property: "og:title", content: "Dr. Youssef Badawy — Portfolio" },
-      { property: "og:description", content: "Veterinary medicine, applied AI, and visual storytelling — one quiet portfolio." },
+      { title: SITE_TITLE },
+      { name: "description", content: SITE_DESC },
+      { name: "theme-color", content: "#007979" },
+      { property: "og:title", content: SITE_TITLE },
+      { property: "og:description", content: SITE_DESC },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "/" },
+      { property: "og:site_name", content: "Youssef Badawy" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: SITE_TITLE },
+      { name: "twitter:description", content: SITE_DESC },
+    ],
+    links: [{ rel: "canonical", href: "/" }],
+    scripts: [
+      { type: "application/ld+json", children: JSON.stringify(PERSON_JSONLD) },
+      { type: "application/ld+json", children: JSON.stringify(WEBSITE_JSONLD) },
     ],
   }),
   component: () => (
