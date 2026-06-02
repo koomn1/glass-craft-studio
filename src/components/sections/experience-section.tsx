@@ -1,5 +1,5 @@
+import { motion } from "framer-motion";
 import { Reveal } from "@/components/reveal";
-import { PhotoStrip } from "@/components/photo-strip";
 import { Briefcase, Megaphone, Bot, Truck, Sparkles, HeartHandshake } from "lucide-react";
 import photoCafe from "@/assets/photos/photo-cafe.jpg.asset.json";
 import photoMoto from "@/assets/photos/photo-moto.jpg.asset.json";
@@ -120,14 +120,48 @@ export function ExperienceSection() {
         </div>
       </Reveal>
 
-      <PhotoStrip
-        title="Moments along the way"
-        items={[
-          { src: photoCafe.url, alt: "On Boulevard street", caption: "Marketing energy", aspect: "square" },
-          { src: photoMoto.url, alt: "Evening ride", caption: "Operations on the move", aspect: "square" },
-          { src: photoMirror.url, alt: "Self portrait", caption: "Brand reflection", aspect: "square" },
-        ]}
-      />
+      <Reveal>
+        <div className="relative mx-auto h-[360px] w-full max-w-3xl sm:h-[420px]">
+          <div
+            className="absolute inset-0 -z-10 rounded-[2rem] blur-3xl opacity-40"
+            style={{ background: "radial-gradient(60% 60% at 50% 50%, var(--teal-bright), transparent 70%)" }}
+            aria-hidden="true"
+          />
+          {[
+            { src: photoCafe.url, alt: "Marketing moment", cls: "left-0 top-0 h-[58%] w-[44%]", float: { y: [0, -10, 0] }, dur: 6, rot: -2 },
+            { src: photoMoto.url, alt: "On the move", cls: "right-0 top-[10%] h-[52%] w-[42%]", float: { y: [0, 8, 0] }, dur: 7, rot: 2 },
+            { src: photoMirror.url, alt: "Brand reflection", cls: "left-[22%] bottom-0 h-[54%] w-[56%]", float: { y: [0, -6, 0] }, dur: 8, rot: -1 },
+          ].map((p, i) => (
+            <motion.figure
+              key={p.src}
+              initial={{ opacity: 0, scale: 0.9, rotate: p.rot * 2 }}
+              whileInView={{ opacity: 1, scale: 1, rotate: p.rot }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.7, delay: i * 0.12, ease: [0.2, 0.8, 0.2, 1] }}
+              whileHover={{ scale: 1.04, rotate: 0, zIndex: 5 }}
+              className={`glass-strong group absolute overflow-hidden rounded-[1.75rem] p-1.5 shadow-xl ${p.cls}`}
+            >
+              <motion.div
+                animate={p.float}
+                transition={{ duration: p.dur, repeat: Infinity, ease: "easeInOut" }}
+                className="relative h-full w-full overflow-hidden rounded-[1.4rem]"
+              >
+                <img
+                  src={p.src}
+                  alt={p.alt}
+                  loading="lazy"
+                  decoding="async"
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.08]"
+                />
+                <div
+                  className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                  style={{ background: "linear-gradient(180deg, transparent 50%, color-mix(in oklab, var(--teal) 50%, transparent))" }}
+                />
+              </motion.div>
+            </motion.figure>
+          ))}
+        </div>
+      </Reveal>
     </div>
   );
 }
