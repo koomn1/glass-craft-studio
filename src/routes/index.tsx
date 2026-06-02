@@ -108,7 +108,7 @@ function Index() {
             aria-hidden="true"
             width={28}
             height={28}
-            className="h-7 w-7 rounded-full object-contain"
+            className="h-7 w-7 rounded-full bg-white object-contain p-0.5 ring-1 ring-border"
           />
           <span className="hidden pr-1 sm:inline">Youssef Badawy</span>
         </a>
