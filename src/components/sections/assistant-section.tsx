@@ -145,7 +145,7 @@ export function AssistantSection() {
                     }
                   >
                     {m.role === "assistant" ? (
-                      <div className="prose prose-sm dark:prose-invert max-w-none [&>*]:my-1">
+                      <div className="space-y-2 [&_a]:text-primary [&_a]:underline [&_code]:rounded [&_code]:bg-foreground/10 [&_code]:px-1 [&_code]:py-0.5 [&_strong]:font-semibold [&_ul]:list-disc [&_ul]:pl-5">
                         <ReactMarkdown>{m.content || "…"}</ReactMarkdown>
                       </div>
                     ) : (
