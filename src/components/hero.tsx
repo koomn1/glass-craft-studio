@@ -19,7 +19,7 @@ export function Hero({ onExplore }: HeroProps) {
         className="glass inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs"
       >
         <span className="h-2 w-2 animate-pulse rounded-full bg-primary" />
-        Veterinary medicine · AI · Storytelling
+        Aspiring Perfect Doctor · Marketing &amp; AI Enthusiast
       </motion.div>
 
       <motion.h1
@@ -37,7 +37,7 @@ export function Hero({ onExplore }: HeroProps) {
         transition={{ duration: 0.9, delay: 0.25 }}
         className="mx-auto mt-5 max-w-xl text-base text-muted-foreground sm:text-lg"
       >
-        A portfolio across veterinary practice, applied AI, and visual storytelling — built with intention and a quiet sense of craft.
+        Bridging the gap between healthcare innovation and cutting-edge technology — veterinary practice, applied AI, and visual storytelling.
       </motion.p>
 
       <motion.button
@@ -47,7 +47,7 @@ export function Hero({ onExplore }: HeroProps) {
         onClick={onExplore}
         className="glass mt-10 inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium transition-transform hover:scale-[1.03]"
       >
-        Explore the work
+        Scroll to explore
         <ArrowDown className="h-4 w-4" />
       </motion.button>
     </motion.section>
