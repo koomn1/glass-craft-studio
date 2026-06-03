@@ -1,0 +1,11 @@
+name = "jo-badawy"
+compatibility_date = "2025-05-01"
+compatibility_flags = ["nodejs_compat"]
+main = ".output/server/index.mjs"
+
+[assets]
+directory = ".output/public"
+binding = "ASSETS"
+
+# Add secrets via: bunx wrangler secret put <NAME>
+# Or in the Cloudflare dashboard: Workers & Pages → your project → Settings → Variables
