@@ -2,6 +2,9 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { TiltCard } from "@/components/tilt-card";
 import { Reveal } from "@/components/reveal";
+import { SectionHeader } from "@/components/section-header";
+import { PhotoCollage } from "@/components/photo-collage";
+import { TEAL_GRADIENT } from "@/lib/styles";
 import { ProjectModal, type ProjectDetail } from "@/components/project-modal";
 import {
   Stethoscope, Microscope, HeartPulse, Syringe, Award, BookOpen,
@@ -72,17 +75,15 @@ export function VetSection() {
 
   return (
     <div className="space-y-8">
-      <Reveal>
-        <div className="flex flex-col gap-3">
-          <span className="text-xs uppercase tracking-[0.2em] text-primary">Section 01</span>
-          <h2 className="text-4xl font-semibold sm:text-5xl">
+      <SectionHeader
+        label="Section 01"
+        title={
+          <>
             Veterinary <span className="text-gradient-teal">Medicine</span>
-          </h2>
-          <p className="max-w-2xl text-muted-foreground">
-            Clinical practice grounded in evidence, compassion, and meticulous follow-up.
-          </p>
-        </div>
-      </Reveal>
+          </>
+        }
+        description="Clinical practice grounded in evidence, compassion, and meticulous follow-up."
+      />
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {cases.map((c, i) => {
@@ -99,7 +100,7 @@ export function VetSection() {
                   <article className="glass h-full rounded-3xl p-6">
                     <div
                       className="mb-4 inline-grid h-11 w-11 place-items-center rounded-2xl"
-                      style={{ background: "linear-gradient(135deg, var(--teal), var(--teal-bright))" }}
+                      style={{ background: TEAL_GRADIENT }}
                     >
                       <Icon className="h-5 w-5 text-white" aria-hidden="true" />
                     </div>
@@ -116,46 +117,13 @@ export function VetSection() {
       <Reveal>
         <div className="grid gap-5 lg:grid-cols-[1.1fr_0.9fr] lg:items-stretch">
           {/* Animated photo collage — no captions */}
-          <div className="relative h-[360px] sm:h-[420px]">
-            <div
-              className="absolute inset-0 -z-10 rounded-[2rem] blur-3xl opacity-40"
-              style={{ background: "radial-gradient(60% 60% at 50% 50%, var(--teal-bright), transparent 70%)" }}
-              aria-hidden="true"
-            />
-            {[
+          <PhotoCollage
+            items={[
               { src: photoSchool.url, alt: "Academic moment", cls: "left-0 top-0 h-[58%] w-[52%]", float: { y: [0, -8, 0] }, dur: 6, rot: -2 },
               { src: photoWalk.url, alt: "Daily walk", cls: "right-0 top-[8%] h-[48%] w-[42%]", float: { y: [0, 10, 0] }, dur: 7, rot: 2 },
               { src: photoStreet.url, alt: "Field walk", cls: "left-[16%] bottom-0 h-[52%] w-[60%]", float: { y: [0, -6, 0] }, dur: 8, rot: -1 },
-            ].map((p, i) => (
-              <motion.figure
-                key={p.src}
-                initial={{ opacity: 0, scale: 0.9, rotate: p.rot * 2 }}
-                whileInView={{ opacity: 1, scale: 1, rotate: p.rot }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.7, delay: i * 0.12, ease: [0.2, 0.8, 0.2, 1] }}
-                whileHover={{ scale: 1.04, rotate: 0, zIndex: 5 }}
-                className={`glass-strong group absolute overflow-hidden rounded-[1.75rem] p-1.5 shadow-xl ${p.cls}`}
-              >
-                <motion.div
-                  animate={p.float}
-                  transition={{ duration: p.dur, repeat: Infinity, ease: "easeInOut" }}
-                  className="relative h-full w-full overflow-hidden rounded-[1.4rem]"
-                >
-                  <img
-                    src={p.src}
-                    alt={p.alt}
-                    loading="lazy"
-                    decoding="async"
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.08]"
-                  />
-                  <div
-                    className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-                    style={{ background: "linear-gradient(180deg, transparent 50%, color-mix(in oklab, var(--teal) 50%, transparent))" }}
-                  />
-                </motion.div>
-              </motion.figure>
-            ))}
-          </div>
+            ]}
+          />
 
           {/* About-me mini cards — same family as the grid above, lighter rhythm */}
           <div>

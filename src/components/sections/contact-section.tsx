@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Reveal } from "@/components/reveal";
+import { SectionHeader } from "@/components/section-header";
+import { TEAL_GRADIENT } from "@/lib/styles";
 import { Mail, Phone, MapPin, MessageCircle, Send, Instagram, Music2 } from "lucide-react";
 
 const directs = [
@@ -36,17 +38,15 @@ export function ContactSection() {
 
   return (
     <div className="space-y-8">
-      <Reveal>
-        <div className="flex flex-col gap-3">
-          <span className="text-xs uppercase tracking-[0.2em] text-primary">Section 07</span>
-          <h2 className="text-4xl font-semibold sm:text-5xl">
+      <SectionHeader
+        label="Section 07"
+        title={
+          <>
             Get in <span className="text-gradient-teal">Touch</span>
-          </h2>
-          <p className="max-w-2xl text-muted-foreground">
-            Whether you have a question, want to collaborate, or just want to say hello — feel free to reach out.
-          </p>
-        </div>
-      </Reveal>
+          </>
+        }
+        description="Whether you have a question, want to collaborate, or just want to say hello — feel free to reach out."
+      />
 
       <div className="grid gap-4 lg:grid-cols-2">
         <Reveal>
@@ -165,7 +165,7 @@ export function ContactSection() {
                 type="button"
                 onClick={() => handleSend("whatsapp")}
                 className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium text-primary-foreground transition-transform hover:scale-[1.03] focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                style={{ background: "linear-gradient(135deg, var(--teal), var(--teal-bright))" }}
+                style={{ background: TEAL_GRADIENT }}
               >
                 <MessageCircle className="h-4 w-4" /> Send via WhatsApp
               </button>

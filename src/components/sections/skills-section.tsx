@@ -1,4 +1,6 @@
 import { Reveal } from "@/components/reveal";
+import { SectionHeader } from "@/components/section-header";
+import { TEAL_GRADIENT } from "@/lib/styles";
 
 const technical = [
   { label: "Marketing & Digital Strategy", value: 85 },
@@ -15,17 +17,11 @@ const ai = ["ChatGPT", "MidJourney", "Claude", "DALL·E", "Canva AI"];
 export function SkillsSection() {
   return (
     <div className="space-y-8">
-      <Reveal>
-        <div className="flex flex-col gap-3">
-          <span className="text-xs uppercase tracking-[0.2em] text-primary">Section 05</span>
-          <h2 className="text-4xl font-semibold sm:text-5xl">
-            <span className="text-gradient-teal">Skills</span>
-          </h2>
-          <p className="max-w-2xl text-muted-foreground">
-            A practical toolkit across marketing, AI, and engineering — kept sharp through daily work.
-          </p>
-        </div>
-      </Reveal>
+      <SectionHeader
+        label="Section 05"
+        title={<span className="text-gradient-teal">Skills</span>}
+        description="A practical toolkit across marketing, AI, and engineering — kept sharp through daily work."
+      />
 
       <div className="grid gap-4 lg:grid-cols-2">
         <Reveal>
@@ -81,7 +77,7 @@ export function SkillsSection() {
                   <li
                     key={s}
                     className="rounded-full px-3 py-1.5 text-sm text-primary-foreground"
-                    style={{ background: "linear-gradient(135deg, var(--teal), var(--teal-bright))" }}
+                    style={{ background: TEAL_GRADIENT }}
                   >
                     {s}
                   </li>

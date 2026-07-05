@@ -2,6 +2,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { X, ExternalLink } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import { TEAL_GRADIENT } from "@/lib/styles";
 
 export interface GalleryItem {
   type: "image" | "video";
@@ -56,7 +57,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                   <div className="flex items-start gap-4">
                     <div
                       className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl"
-                      style={{ background: "linear-gradient(135deg, var(--teal), var(--teal-bright))" }}
+                      style={{ background: TEAL_GRADIENT }}
                     >
                       <project.icon className="h-5 w-5 text-white" aria-hidden="true" />
                     </div>
@@ -126,7 +127,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium text-primary-foreground transition-transform hover:scale-[1.03] focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                      style={{ background: "linear-gradient(135deg, var(--teal), var(--teal-bright))" }}
+                      style={{ background: TEAL_GRADIENT }}
                     >
                       Visit project <ExternalLink className="h-4 w-4" aria-hidden="true" />
                     </a>

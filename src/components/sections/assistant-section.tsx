@@ -4,6 +4,8 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Sparkles, ArrowUp, Loader2, Square, RotateCcw, AlertCircle } from "lucide-react";
 import { Reveal } from "@/components/reveal";
+import { SectionHeader } from "@/components/section-header";
+import { TEAL_GRADIENT } from "@/lib/styles";
 
 type Msg = { role: "user" | "assistant"; content: string };
 
@@ -178,17 +180,15 @@ export function AssistantSection() {
 
   return (
     <div className="space-y-8">
-      <Reveal>
-        <div className="flex flex-col gap-3">
-          <span className="text-xs uppercase tracking-[0.2em] text-primary">Section 04</span>
-          <h2 className="text-4xl font-semibold sm:text-5xl">
+      <SectionHeader
+        label="Section 04"
+        title={
+          <>
             AI <span className="text-gradient-teal">Assistant</span>
-          </h2>
-          <p className="max-w-2xl text-muted-foreground">
-            Ask anything about the work, the research, or how to collaborate.
-          </p>
-        </div>
-      </Reveal>
+          </>
+        }
+        description="Ask anything about the work, the research, or how to collaborate."
+      />
 
       <Reveal delay={0.1}>
         <div className="glass-strong relative overflow-hidden rounded-3xl">
@@ -202,7 +202,7 @@ export function AssistantSection() {
           >
             {messages.length === 0 && (
               <div className="flex h-full min-h-[280px] flex-col items-center justify-center gap-5 text-center">
-                <span className="grid h-14 w-14 place-items-center rounded-2xl" style={{ background: "linear-gradient(135deg, var(--teal), var(--teal-bright))" }}>
+                <span className="grid h-14 w-14 place-items-center rounded-2xl" style={{ background: TEAL_GRADIENT }}>
                   <Sparkles className="h-6 w-6 text-white" aria-hidden="true" />
                 </span>
                 <p className="max-w-sm text-sm text-muted-foreground">
@@ -238,7 +238,7 @@ export function AssistantSection() {
                     }`}
                     style={
                       m.role === "user"
-                        ? { background: "linear-gradient(135deg, var(--teal), var(--teal-bright))" }
+                        ? { background: TEAL_GRADIENT }
                         : undefined
                     }
                   >
@@ -327,7 +327,7 @@ export function AssistantSection() {
                 disabled={loading || !input.trim()}
                 aria-label="Send message"
                 className="grid h-10 w-10 place-items-center rounded-full text-primary-foreground transition-transform hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:opacity-50"
-                style={{ background: "linear-gradient(135deg, var(--teal), var(--teal-bright))" }}
+                style={{ background: TEAL_GRADIENT }}
               >
                 {loading ? <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" /> : <ArrowUp className="h-4 w-4" aria-hidden="true" />}
               </button>
