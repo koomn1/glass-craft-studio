@@ -1,0 +1,23 @@
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Quiz Space logo">
+  <defs>
+    <linearGradient id="qsGrad" x1="12" y1="12" x2="116" y2="116" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#24B1B1"/>
+      <stop offset="1" stop-color="#007979"/>
+    </linearGradient>
+    <linearGradient id="qsSpark" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#FFF0E4"/>
+      <stop offset="1" stop-color="#FFE0C5"/>
+    </linearGradient>
+  </defs>
+  <rect x="8" y="8" width="112" height="112" rx="30" fill="url(#qsGrad)"/>
+  <rect x="8" y="8" width="112" height="112" rx="30" fill="#ffffff" fill-opacity="0.06"/>
+  <!-- Speech bubble = quiz question -->
+  <path d="M40 34h48a14 14 0 0 1 14 14v26a14 14 0 0 1-14 14H62l-16 14v-14h-6a14 14 0 0 1-14-14V48a14 14 0 0 1 14-14Z" fill="url(#qsSpark)" fill-opacity="0.96"/>
+  <!-- Question mark -->
+  <path d="M64 48c-7.2 0-12.6 4.4-13.4 11.4a3.4 3.4 0 0 0 6.7.9c.5-3.6 2.9-5.6 6.7-5.6 3.8 0 6.4 2.2 6.4 5.4 0 2.6-1.2 4-4.6 6.2-3.8 2.5-5.6 5-5.4 9.1a3.4 3.4 0 0 0 6.8-.2c-.1-1.7.6-2.7 2.9-4.2 4.3-2.8 7-5.7 7-10.9C77.1 53.2 71.9 48 64 48Z" fill="#007979"/>
+  <circle cx="61" cy="83.5" r="3.9" fill="#007979"/>
+  <!-- Orbiting spark (space motif) -->
+  <circle cx="98" cy="30" r="7" fill="url(#qsSpark)"/>
+  <circle cx="98" cy="30" r="7" fill="#24B1B1" fill-opacity="0.25"/>
+  <circle cx="30" cy="96" r="4" fill="#FFE0C5"/>
+</svg>
