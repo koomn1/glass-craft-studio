@@ -77,24 +77,38 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Jo Badawy | Portfolio" },
-      { name: "description", content: "Vet Med & AI Dev" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Jo Badawy | Portfolio" },
-      { property: "og:description", content: "Vet Med & AI Dev" },
+      { title: "Quiz Space — Create quizzes people love" },
+      {
+        name: "description",
+        content:
+          "Quiz Space helps creators design, share, and analyze beautiful quizzes in minutes.",
+      },
+      { name: "author", content: "Quiz Space" },
+      { property: "og:title", content: "Quiz Space — Create quizzes people love" },
+      {
+        property: "og:description",
+        content:
+          "Quiz Space helps creators design, share, and analyze beautiful quizzes in minutes.",
+      },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
-      { name: "twitter:title", content: "Jo Badawy | Portfolio" },
-      { name: "twitter:description", content: "Vet Med & AI Dev" },
-      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/014452f6-b11d-49e7-a303-4a65db866a5d" },
-      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/014452f6-b11d-49e7-a303-4a65db866a5d" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Quiz Space — Create quizzes people love" },
+      {
+        name: "twitter:description",
+        content:
+          "Quiz Space helps creators design, share, and analyze beautiful quizzes in minutes.",
+      },
     ],
     links: [
+      { rel: "stylesheet", href: appCss },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: appCss,
+        href: "https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap",
       },
+      { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
+      { rel: "apple-touch-icon", href: "/favicon.svg" },
     ],
   }),
   shellComponent: RootShell,
@@ -122,7 +136,6 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
     </QueryClientProvider>
   );
