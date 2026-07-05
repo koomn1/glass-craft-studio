@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { TiltCard } from "@/components/tilt-card";
 import { Reveal } from "@/components/reveal";
+import { SectionHeader } from "@/components/section-header";
+import { TEAL_GLOW_CIRCLE } from "@/lib/styles";
 import { ProjectModal, type ProjectDetail } from "@/components/project-modal";
 import { PhotoStrip } from "@/components/photo-strip";
 import { Brain, Code2, Sparkles, Workflow, Database, Cpu } from "lucide-react";
@@ -69,17 +71,15 @@ export function DevSection() {
 
   return (
     <div className="space-y-8">
-      <Reveal>
-        <div className="flex flex-col gap-3">
-          <span className="text-xs uppercase tracking-[0.2em] text-primary">Section 02</span>
-          <h2 className="text-4xl font-semibold sm:text-5xl">
+      <SectionHeader
+        label="Section 02"
+        title={
+          <>
             AI &amp; <span className="text-gradient-teal">Development</span>
-          </h2>
-          <p className="max-w-2xl text-muted-foreground">
-            Pragmatic tools where medicine meets modern software — shipped, measured, iterated.
-          </p>
-        </div>
-      </Reveal>
+          </>
+        }
+        description="Pragmatic tools where medicine meets modern software — shipped, measured, iterated."
+      />
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {projects.map((p, i) => {
@@ -96,7 +96,7 @@ export function DevSection() {
                   <article className="glass relative h-full overflow-hidden rounded-3xl p-6">
                     <div
                       className="absolute -right-10 -top-10 h-32 w-32 rounded-full opacity-40 blur-2xl transition-opacity group-hover:opacity-70"
-                      style={{ background: "radial-gradient(circle, var(--teal-bright), transparent 70%)" }}
+                      style={{ background: TEAL_GLOW_CIRCLE }}
                       aria-hidden="true"
                     />
                     <div className="relative">

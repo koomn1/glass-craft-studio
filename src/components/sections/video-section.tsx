@@ -1,5 +1,7 @@
 import { TiltCard } from "@/components/tilt-card";
 import { Reveal } from "@/components/reveal";
+import { SectionHeader } from "@/components/section-header";
+import { TEAL_GRADIENT } from "@/lib/styles";
 import { Play, Film, Mic, Camera } from "lucide-react";
 
 const items = [
@@ -12,17 +14,15 @@ const items = [
 export function VideoSection() {
   return (
     <div className="space-y-8">
-      <Reveal>
-        <div className="flex flex-col gap-3">
-          <span className="text-xs uppercase tracking-[0.2em] text-primary">Section 03</span>
-          <h2 className="text-4xl font-semibold sm:text-5xl">
+      <SectionHeader
+        label="Section 03"
+        title={
+          <>
             Video &amp; <span className="text-gradient-teal">Interactive</span>
-          </h2>
-          <p className="max-w-2xl text-muted-foreground">
-            Visual storytelling that translates clinical work for a wider audience.
-          </p>
-        </div>
-      </Reveal>
+          </>
+        }
+        description="Visual storytelling that translates clinical work for a wider audience."
+      />
 
       <div className="grid gap-5 sm:grid-cols-2">
         {items.map((it, i) => {
@@ -43,7 +43,7 @@ export function VideoSection() {
                       <span className="glass-subtle rounded-full px-3 py-1 text-xs">{it.meta}</span>
                       <span
                         className="grid h-12 w-12 place-items-center rounded-full transition-transform group-hover:scale-110"
-                        style={{ background: "linear-gradient(135deg, var(--teal), var(--teal-bright))" }}
+                        style={{ background: TEAL_GRADIENT }}
                       >
                         <Icon className="h-5 w-5 text-white" />
                       </span>

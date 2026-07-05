@@ -1,5 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowDown } from "lucide-react";
+import { TEAL_GLOW_RADIAL } from "@/lib/styles";
 import portrait from "@/assets/photos/photo-sun.jpg.asset.json";
 import sitting from "@/assets/photos/photo-sitting.webp.asset.json";
 
@@ -67,7 +68,7 @@ export function Hero({ onExplore }: HeroProps) {
       >
         <div
           className="absolute inset-0 -z-10 rounded-[2.5rem] blur-3xl opacity-50"
-          style={{ background: "radial-gradient(60% 60% at 50% 50%, var(--teal-bright), transparent 70%)" }}
+          style={{ background: TEAL_GLOW_RADIAL }}
           aria-hidden="true"
         />
         <motion.figure

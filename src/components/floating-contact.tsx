@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, Mail, Send, Instagram, Music2, X, Share2 } from "lucide-react";
+import { TEAL_GRADIENT } from "@/lib/styles";
 
 const links = [
   { label: "WhatsApp", href: "https://wa.me/2001018995002", icon: MessageCircle, color: "oklch(0.72 0.18 150)" },
@@ -49,7 +50,7 @@ export function FloatingContact() {
         aria-controls="contact-rail"
         aria-label={open ? "Close contact rail" : "Open contact rail"}
         className="fixed right-0 top-1/2 z-50 -translate-y-1/2 rounded-l-2xl px-2.5 py-4 shadow-[0_10px_40px_-10px_color-mix(in_oklab,var(--teal)_60%,transparent)] focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-        style={{ background: "linear-gradient(135deg, var(--teal), var(--teal-bright))" }}
+        style={{ background: TEAL_GRADIENT }}
       >
         <motion.span
           key={open ? "x" : "share"}
