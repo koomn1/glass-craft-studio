@@ -16,6 +16,9 @@ dist-ssr
 .nitro
 *.local
 
+# Test coverage
+coverage
+
 # Wrangler / Cloudflare
 .wrangler/
 .dev.vars
