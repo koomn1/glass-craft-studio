@@ -17,6 +17,26 @@ function getSystem(): Resolved {
   return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 }
 
+// localStorage access throws when storage is disabled or unavailable
+// (e.g. Safari private mode, blocked cookies). Degrade gracefully instead
+// of letting the error crash rendering or the theme toggle.
+function readStoredTheme(): Theme | null {
+  try {
+    return localStorage.getItem(STORAGE_KEY) as Theme | null;
+  } catch (error) {
+    console.warn("Unable to read stored theme", error);
+    return null;
+  }
+}
+
+function writeStoredTheme(theme: Theme) {
+  try {
+    localStorage.setItem(STORAGE_KEY, theme);
+  } catch (error) {
+    console.warn("Unable to persist theme", error);
+  }
+}
+
 function applyTheme(resolved: Resolved) {
   const root = document.documentElement;
   root.classList.toggle("dark", resolved === "dark");
@@ -28,7 +48,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const [resolved, setResolved] = useState<Resolved>("light");
 
   useEffect(() => {
-    const stored = (localStorage.getItem(STORAGE_KEY) as Theme | null) ?? "system";
+    const stored = readStoredTheme() ?? "system";
     setThemeState(stored);
   }, []);
 
@@ -51,7 +71,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   }, [theme]);
 
   const setTheme = (t: Theme) => {
-    localStorage.setItem(STORAGE_KEY, t);
+    writeStoredTheme(t);
     setThemeState(t);
   };
 
