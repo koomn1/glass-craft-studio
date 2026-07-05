@@ -28,18 +28,26 @@ export const Route = createFileRoute("/api/chat")({
         }
         const messages = Array.isArray(body.messages) ? body.messages.slice(-20) : [];
 
-        const upstream = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${apiKey}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            model: "google/gemini-3-flash-preview",
-            stream: true,
-            messages: [{ role: "system", content: SYSTEM_PROMPT }, ...messages],
-          }),
-        });
+        let upstream: Response;
+        try {
+          upstream = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${apiKey}`,
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              model: "google/gemini-3-flash-preview",
+              stream: true,
+              messages: [{ role: "system", content: SYSTEM_PROMPT }, ...messages],
+            }),
+          });
+        } catch (error) {
+          console.error("Failed to reach AI gateway", error);
+          return new Response(JSON.stringify({ error: "Could not reach the AI service" }), {
+            status: 502,
+          });
+        }
 
         if (!upstream.ok || !upstream.body) {
           const text = await upstream.text().catch(() => "");

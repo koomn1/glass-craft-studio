@@ -128,6 +128,10 @@ export function AssistantSection() {
           }
         }
       }
+
+      if (!assistant) {
+        throw new Error("The assistant returned an empty response. Please try again.");
+      }
     } catch (e) {
       if ((e as Error).name === "AbortError") return;
       setError((e as Error).message);
