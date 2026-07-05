@@ -1,0 +1,50 @@
+<svg width="960" height="760" viewBox="0 0 960 760" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Quiz Space illustration">
+  <defs>
+    <linearGradient id="bg" x1="154" y1="90" x2="846" y2="670" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F9FBF8"/>
+      <stop offset="1" stop-color="#E9E6FB"/>
+    </linearGradient>
+    <linearGradient id="card" x1="220" y1="190" x2="760" y2="570" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#F5F8F6"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="200" y1="120" x2="760" y2="660" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6BAFA3"/>
+      <stop offset="1" stop-color="#AAA7E8"/>
+    </linearGradient>
+    <filter id="blur" x="0" y="0" width="960" height="760" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="34"/>
+    </filter>
+  </defs>
+  <rect width="960" height="760" rx="56" fill="url(#bg)"/>
+  <g filter="url(#blur)" opacity="0.8">
+    <ellipse cx="246" cy="168" rx="120" ry="88" fill="#BDE2DA"/>
+    <ellipse cx="744" cy="202" rx="132" ry="96" fill="#D6D0F8"/>
+    <ellipse cx="480" cy="626" rx="226" ry="104" fill="#EADCC5"/>
+  </g>
+  <g opacity="0.9">
+    <rect x="124" y="136" width="440" height="278" rx="34" fill="url(#card)" stroke="#C9D8D0"/>
+    <rect x="354" y="240" width="420" height="290" rx="34" fill="#FFFFFF" stroke="#C9D8D0"/>
+    <rect x="206" y="336" width="438" height="234" rx="34" fill="#FBFCFB" stroke="#C9D8D0"/>
+  </g>
+  <rect x="164" y="176" width="168" height="18" rx="9" fill="#DCE8E4"/>
+  <rect x="164" y="206" width="248" height="12" rx="6" fill="#E8EEE9"/>
+  <rect x="164" y="228" width="188" height="12" rx="6" fill="#E8EEE9"/>
+  <rect x="164" y="270" width="304" height="46" rx="23" fill="#F1F5F3"/>
+  <rect x="164" y="328" width="304" height="46" rx="23" fill="#F1F5F3"/>
+  <rect x="164" y="386" width="304" height="46" rx="23" fill="#F1F5F3"/>
+  <circle cx="188" cy="293" r="10" fill="#6BAFA3"/>
+  <circle cx="188" cy="351" r="10" fill="#D6D0F8"/>
+  <circle cx="188" cy="409" r="10" fill="#D9C7AF"/>
+  <path d="M202 534h154" stroke="#B7C7C0" stroke-width="10" stroke-linecap="round"/>
+  <path d="M540 324h160" stroke="#B7C7C0" stroke-width="10" stroke-linecap="round"/>
+  <path d="M540 358h120" stroke="#E1E7E4" stroke-width="10" stroke-linecap="round"/>
+  <path d="M540 390h176" stroke="#E1E7E4" stroke-width="10" stroke-linecap="round"/>
+  <rect x="540" y="434" width="154" height="48" rx="24" fill="#6BAFA3"/>
+  <path d="M568 458l10 10 20-22" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M604 155l16 36 36 16-36 16-16 36-16-36-36-16 36-16 16-36Z" fill="#AAA7E8" fill-opacity="0.8"/>
+  <path d="M780 112l8 18 18 8-18 8-8 18-8-18-18-8 18-8 8-18Z" fill="#6BAFA3" fill-opacity="0.85"/>
+  <path d="M128 544l10 22 22 10-22 10-10 22-10-22-22-10 22-10 10-22Z" fill="#AAA7E8" fill-opacity="0.85"/>
+  <text x="540" y="292" fill="#1C2F31" font-size="26" font-family="Cairo, Tajawal, Arial, sans-serif" font-weight="700">Which answer is correct?</text>
+  <text x="360" y="196" fill="#1C2F31" font-size="18" font-family="Cairo, Tajawal, Arial, sans-serif" font-weight="700">Quiz preview</text>
+</svg>

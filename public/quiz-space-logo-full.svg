@@ -1,0 +1,12 @@
+<svg width="360" height="128" viewBox="0 0 360 128" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Quiz Space logo">
+  <defs>
+    <linearGradient id="qg" x1="20" y1="18" x2="108" y2="110" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6BAFA3"/>
+      <stop offset="1" stop-color="#AAA7E8"/>
+    </linearGradient>
+  </defs>
+  <rect x="14" y="14" width="100" height="100" rx="30" fill="url(#qg)"/>
+  <path d="M54 38c13.255 0 24 10.745 24 24 0 5.977-2.185 11.44-5.787 15.63l10.93 10.9c1.17 1.16 1.17 3.04 0 4.2-1.17 1.17-3.06 1.17-4.23 0l-10.9-10.88A23.89 23.89 0 0 1 54 86c-13.255 0-24-10.745-24-24s10.745-24 24-24Zm0 6c-9.941 0-18 8.059-18 18s8.059 18 18 18 18-8.059 18-18-8.059-18-18-18Z" fill="#F7FAF7"/>
+  <path d="M49.5 58.5l4.5 4.5 11.5-11.5" stroke="#6BAFA3" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="136" y="76" fill="#223034" font-size="42" font-family="Cairo, Tajawal, Arial, sans-serif" font-weight="700">Quiz Space</text>
+</svg>

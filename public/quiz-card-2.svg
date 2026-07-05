@@ -1,0 +1,19 @@
+<svg width="640" height="420" viewBox="0 0 640 420" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Science quiz card preview">
+  <defs>
+    <linearGradient id="g2" x1="72" y1="36" x2="568" y2="384" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8FAFC"/>
+      <stop offset="1" stop-color="#ECE9FA"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="420" rx="36" fill="url(#g2)"/>
+  <rect x="44" y="44" width="552" height="332" rx="28" fill="#FFFFFF" stroke="#D8D7E8"/>
+  <text x="80" y="100" fill="#6D6AA8" font-family="Cairo, Tajawal, Arial, sans-serif" font-size="22" font-weight="700">Science Sprint</text>
+  <text x="80" y="144" fill="#1E2E2F" font-family="Cairo, Tajawal, Arial, sans-serif" font-size="28" font-weight="700">What does H2O stand for?</text>
+  <rect x="80" y="188" width="480" height="44" rx="22" fill="#F0F4F7"/>
+  <rect x="80" y="244" width="480" height="44" rx="22" fill="#F0F4F7"/>
+  <rect x="80" y="300" width="480" height="44" rx="22" fill="#AAA7E8"/>
+  <text x="104" y="216" fill="#304246" font-family="Cairo, Tajawal, Arial, sans-serif" font-size="18" font-weight="600">Helium</text>
+  <text x="104" y="272" fill="#304246" font-family="Cairo, Tajawal, Arial, sans-serif" font-size="18" font-weight="600">Hydrogen</text>
+  <text x="104" y="328" fill="#FFFFFF" font-family="Cairo, Tajawal, Arial, sans-serif" font-size="18" font-weight="700">Water</text>
+  <circle cx="516" cy="312" r="10" fill="#FFF"/>
+</svg>

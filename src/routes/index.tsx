@@ -1,49 +1,43 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useRef, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { Stethoscope, Cpu, Film, Sparkles, Wrench, Briefcase, Mail } from "lucide-react";
 
 import { ThemeProvider } from "@/components/theme-provider";
-import { ThemeToggle } from "@/components/theme-toggle";
-import { GlassTabs, type TabItem } from "@/components/glass-tabs";
-import { FloatingContact } from "@/components/floating-contact";
-import { Hero } from "@/components/hero";
-import { VetSection } from "@/components/sections/vet-section";
-import { DevSection } from "@/components/sections/dev-section";
-import { VideoSection } from "@/components/sections/video-section";
-import { SkillsSection } from "@/components/sections/skills-section";
-import { ExperienceSection } from "@/components/sections/experience-section";
-import { ContactSection } from "@/components/sections/contact-section";
-import { AssistantSection } from "@/components/sections/assistant-section";
-import logo from "@/assets/yb-logo.png.asset.json";
+import {
+  Navbar,
+  Hero,
+  Features,
+  HowItWorks,
+  Templates,
+  Stats,
+  Cta,
+  Footer,
+} from "@/components/quiz";
+import { LanguageProvider } from "@/i18n";
 
-const SITE_TITLE = "Dr. Youssef Badawy — Veterinary Medicine, AI & Storytelling";
+const SITE_TITLE = "Quiz Space — Create quizzes people love";
 const SITE_DESC =
-  "Portfolio of Dr. Youssef Badawy: veterinary practice, applied AI projects, and visual storytelling — wrapped in an iOS-inspired glassmorphism interface.";
-
-const PERSON_JSONLD = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  name: "Dr. Youssef Badawy",
-  jobTitle: "Veterinarian & AI Developer",
-  description: SITE_DESC,
-  url: "/",
-  email: "mailto:yo01009950871@gmail.com",
-  telephone: "+201018995002",
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Kafr El-Sheikh",
-    addressCountry: "EG",
-  },
-  knowsAbout: ["Veterinary Medicine", "Artificial Intelligence", "Software Development", "Visual Storytelling"],
-};
+  "Quiz Space is a calm, modern landing page for a quiz builder that helps creators design, share, and analyze quizzes in minutes.";
 
 const WEBSITE_JSONLD = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  name: SITE_TITLE,
+  name: "Quiz Space",
   url: "/",
   inLanguage: ["en", "ar"],
+};
+
+const SOFTWARE_JSONLD = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "Quiz Space",
+  applicationCategory: "EducationalApplication",
+  operatingSystem: "Web",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "USD",
+  },
+  description: SITE_DESC,
+  url: "/",
 };
 
 export const Route = createFileRoute("/")({
@@ -51,117 +45,44 @@ export const Route = createFileRoute("/")({
     meta: [
       { title: SITE_TITLE },
       { name: "description", content: SITE_DESC },
-      { name: "theme-color", content: "#007979" },
+      { name: "theme-color", content: "#5c8f8a" },
       { property: "og:title", content: SITE_TITLE },
       { property: "og:description", content: SITE_DESC },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "/" },
-      { property: "og:site_name", content: "Youssef Badawy" },
+      { property: "og:site_name", content: "Quiz Space" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: SITE_TITLE },
       { name: "twitter:description", content: SITE_DESC },
     ],
     links: [{ rel: "canonical", href: "/" }],
     scripts: [
-      { type: "application/ld+json", children: JSON.stringify(PERSON_JSONLD) },
       { type: "application/ld+json", children: JSON.stringify(WEBSITE_JSONLD) },
+      { type: "application/ld+json", children: JSON.stringify(SOFTWARE_JSONLD) },
     ],
   }),
   component: () => (
     <ThemeProvider>
-      <Index />
+      <LanguageProvider>
+        <Index />
+      </LanguageProvider>
     </ThemeProvider>
   ),
 });
 
-// Reordered: Vet → Experience → AI/Dev → Skills → Video → Assistant → Contact
-const TABS: TabItem[] = [
-  { id: "vet", label: "Vet", icon: Stethoscope },
-  { id: "experience", label: "Experience", icon: Briefcase },
-  { id: "dev", label: "AI", icon: Cpu },
-  { id: "skills", label: "Skills", icon: Wrench },
-  { id: "video", label: "Video", icon: Film },
-  { id: "assistant", label: "Assistant", icon: Sparkles },
-  { id: "contact", label: "Contact", icon: Mail },
-];
-
 function Index() {
-  const [active, setActive] = useState("vet");
-  const tabsRef = useRef<HTMLDivElement>(null);
-
-  const scrollToTabs = () => {
-    tabsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
-
   return (
-    <div className="relative min-h-screen">
-      {/* Sticky header: logo + responsive center tab rail + theme toggle */}
-      <header className="pointer-events-none fixed top-3 left-3 right-3 z-50 flex items-center gap-2 sm:top-4 sm:left-4 sm:right-4 sm:gap-3">
-        <a
-          href="#"
-          className="glass-strong pointer-events-auto inline-flex shrink-0 items-center gap-2 rounded-full p-1 pr-2 text-sm font-semibold shadow-lg ring-1 ring-border/60 sm:gap-2.5 sm:pr-3"
-          aria-label="Youssef Badawy — home"
-          style={{ boxShadow: "0 6px 24px -8px color-mix(in oklab, var(--teal) 35%, transparent)" }}
-        >
-          <span
-            className="grid h-8 w-8 place-items-center rounded-full bg-white ring-2 ring-primary/70 sm:h-9 sm:w-9"
-            style={{ boxShadow: "0 2px 10px color-mix(in oklab, var(--teal) 35%, transparent)" }}
-          >
-            <img
-              src={logo.url}
-              alt=""
-              aria-hidden="true"
-              width={32}
-              height={32}
-              className="h-6 w-6 object-contain sm:h-7 sm:w-7"
-            />
-          </span>
-          <span className="hidden sm:inline">Youssef Badawy</span>
-        </a>
-
-        {/* Center: tabs rail that flexes to fill the space between logo and toggle */}
-        <div className="pointer-events-auto min-w-0 flex-1">
-          <div className="mx-auto w-full max-w-full">
-            <GlassTabs items={TABS} active={active} onChange={setActive} compact />
-          </div>
-        </div>
-
-        <div className="pointer-events-auto shrink-0">
-          <ThemeToggle />
-        </div>
-      </header>
-
-      <main className="pt-24">
-        <Hero onExplore={scrollToTabs} />
-
-        <div ref={tabsRef} className="mx-auto max-w-6xl px-4 pt-6">
-          <section className="relative mt-2 pb-24" id={`panel-${active}`} role="tabpanel" aria-labelledby={`tab-${active}`}>
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={active}
-                initial={{ opacity: 0, y: 24, filter: "blur(8px)" }}
-                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                exit={{ opacity: 0, y: -16, filter: "blur(8px)" }}
-                transition={{ duration: 0.45, ease: [0.2, 0.8, 0.2, 1] }}
-              >
-                {active === "vet" && <VetSection />}
-                {active === "experience" && <ExperienceSection />}
-                {active === "dev" && <DevSection />}
-                {active === "skills" && <SkillsSection />}
-                {active === "video" && <VideoSection />}
-                {active === "assistant" && <AssistantSection />}
-                {active === "contact" && <ContactSection />}
-              </motion.div>
-            </AnimatePresence>
-          </section>
-        </div>
-
-        <footer className="border-t border-border/60 py-8 text-center text-xs text-muted-foreground">
-          © {new Date().getFullYear()} Dr. Youssef Badawy. Crafted with care.
-        </footer>
+    <div className="relative min-h-screen overflow-hidden">
+      <Navbar />
+      <main>
+        <Hero />
+        <Features />
+        <HowItWorks />
+        <Templates />
+        <Stats />
+        <Cta />
       </main>
-
-      <FloatingContact />
+      <Footer />
     </div>
   );
 }

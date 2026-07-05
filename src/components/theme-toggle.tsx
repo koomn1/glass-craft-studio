@@ -10,7 +10,11 @@ const options = [
 export function ThemeToggle() {
   const { resolved, setTheme } = useTheme();
   return (
-    <div className="glass relative flex items-center gap-1 rounded-full p-1" role="radiogroup" aria-label="Theme">
+    <div
+      className="glass relative flex items-center gap-1 rounded-full p-1"
+      role="radiogroup"
+      aria-label="Theme"
+    >
       {options.map((opt) => {
         const Icon = opt.icon;
         const active = resolved === opt.value;
