@@ -4,8 +4,8 @@ import { Reveal } from "@/components/reveal";
 import { ProjectModal, type ProjectDetail } from "@/components/project-modal";
 import { PhotoStrip } from "@/components/photo-strip";
 import { Brain, Code2, Sparkles, Workflow, Database, Cpu } from "lucide-react";
-import photoHotel from "@/assets/photos/photo-hotel.jpg.asset.json";
-import photoMirror2 from "@/assets/photos/photo-mirror2.jpg.asset.json";
+import photoHotel from "@/assets/photos/photo-hotel.webp.asset.json";
+import photoMirror2 from "@/assets/photos/photo-mirror2.webp.asset.json";
 
 const projects: ProjectDetail[] = [
   {

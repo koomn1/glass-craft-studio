@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 import { Reveal } from "@/components/reveal";
 import { Briefcase, Megaphone, Bot, Truck, Sparkles, HeartHandshake } from "lucide-react";
-import photoCafe from "@/assets/photos/photo-cafe.jpg.asset.json";
-import photoMoto from "@/assets/photos/photo-moto.jpg.asset.json";
-import photoMirror from "@/assets/photos/photo-mirror.jpg.asset.json";
+import photoCafe from "@/assets/photos/photo-cafe.webp.asset.json";
+import photoMoto from "@/assets/photos/photo-moto.webp.asset.json";
+import photoMirror from "@/assets/photos/photo-mirror.webp.asset.json";
 
 const current = {
   company: "Zaghdan Company for Import and Export of Perfumes",

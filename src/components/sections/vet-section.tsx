@@ -7,7 +7,7 @@ import {
   Stethoscope, Microscope, HeartPulse, Syringe, Award, BookOpen,
   MapPin, Languages, Compass, Coffee,
 } from "lucide-react";
-import photoSchool from "@/assets/photos/photo-school.jpg.asset.json";
+import photoSchool from "@/assets/photos/photo-school.webp.asset.json";
 import photoWalk from "@/assets/photos/photo-walk.webp.asset.json";
 import photoStreet from "@/assets/photos/photo-street.webp.asset.json";
 

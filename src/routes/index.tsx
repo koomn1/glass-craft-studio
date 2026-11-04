@@ -15,7 +15,7 @@ import { SkillsSection } from "@/components/sections/skills-section";
 import { ExperienceSection } from "@/components/sections/experience-section";
 import { ContactSection } from "@/components/sections/contact-section";
 import { AssistantSection } from "@/components/sections/assistant-section";
-import logo from "@/assets/yb-logo.png.asset.json";
+import logo from "@/assets/yb-logo.webp.asset.json";
 
 const SITE_TITLE = "Dr. Youssef Badawy — Veterinary Medicine, AI & Storytelling";
 const SITE_DESC =

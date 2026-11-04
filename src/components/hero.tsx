@@ -1,6 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowDown } from "lucide-react";
-import portrait from "@/assets/photos/photo-sun.jpg.asset.json";
+import portrait from "@/assets/photos/photo-sun.webp.asset.json";
 import sitting from "@/assets/photos/photo-sitting.webp.asset.json";
 
 interface HeroProps {
