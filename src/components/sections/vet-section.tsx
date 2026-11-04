@@ -74,8 +74,8 @@ export function VetSection() {
     <div className="space-y-8">
       <Reveal>
         <div className="flex flex-col gap-3">
-          <span className="text-xs uppercase tracking-[0.2em] text-primary">Section 01</span>
-          <h2 className="text-4xl font-semibold sm:text-5xl">
+          <span className="eyebrow"><span className="eyebrow-num">01</span>Vet</span>
+          <h2 className="section-title">
             Veterinary <span className="text-gradient-teal">Medicine</span>
           </h2>
           <p className="max-w-2xl text-muted-foreground">

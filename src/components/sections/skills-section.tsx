@@ -17,8 +17,8 @@ export function SkillsSection() {
     <div className="space-y-8">
       <Reveal>
         <div className="flex flex-col gap-3">
-          <span className="text-xs uppercase tracking-[0.2em] text-primary">Section 05</span>
-          <h2 className="text-4xl font-semibold sm:text-5xl">
+          <span className="eyebrow"><span className="eyebrow-num">04</span>Skills</span>
+          <h2 className="section-title">
             <span className="text-gradient-teal">Skills</span>
           </h2>
           <p className="max-w-2xl text-muted-foreground">
