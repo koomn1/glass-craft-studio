@@ -262,7 +262,7 @@
   }
 
   .text-gradient-teal {
-    background: linear-gradient(120deg, var(--teal) 0%, var(--teal-bright) 60%, var(--coral) 130%);
+    background: linear-gradient(120deg, var(--teal) 0%, var(--teal-bright) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
