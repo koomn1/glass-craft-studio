@@ -156,8 +156,14 @@ function Index() {
           </section>
         </div>
 
-        <footer className="border-t border-border/60 py-8 text-center text-xs text-muted-foreground">
-          © {new Date().getFullYear()} Dr. Youssef Badawy. Crafted with care.
+        <footer className="mx-auto max-w-6xl px-4 pb-10">
+          <div className="glass flex flex-col items-center justify-between gap-3 rounded-3xl px-6 py-5 text-center sm:flex-row sm:text-left">
+            <div className="flex items-center gap-3">
+              <img src={logo.url} alt="" aria-hidden="true" width={28} height={28} loading="lazy" className="h-7 w-7 rounded-full bg-card object-contain p-0.5" />
+              <p className="text-sm font-semibold">Designed with passion for medicine and technology</p>
+            </div>
+            <p className="text-xs text-muted-foreground">© {new Date().getFullYear()} Dr. Youssef Badawy</p>
+          </div>
         </footer>
       </main>
 
