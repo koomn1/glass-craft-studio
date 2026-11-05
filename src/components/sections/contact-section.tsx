@@ -38,8 +38,8 @@ export function ContactSection() {
     <div className="space-y-8">
       <Reveal>
         <div className="flex flex-col gap-3">
-          <span className="text-xs uppercase tracking-[0.2em] text-primary">Section 07</span>
-          <h2 className="text-4xl font-semibold sm:text-5xl">
+          <span className="eyebrow"><span className="eyebrow-num">07</span>Contact</span>
+          <h2 className="section-title">
             Get in <span className="text-gradient-teal">Touch</span>
           </h2>
           <p className="max-w-2xl text-muted-foreground">

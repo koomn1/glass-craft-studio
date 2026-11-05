@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 import { Reveal } from "@/components/reveal";
 import { Briefcase, Megaphone, Bot, Truck, Sparkles, HeartHandshake } from "lucide-react";
-import photoCafe from "@/assets/photos/photo-cafe.jpg.asset.json";
-import photoMoto from "@/assets/photos/photo-moto.jpg.asset.json";
-import photoMirror from "@/assets/photos/photo-mirror.jpg.asset.json";
+import photoCafe from "@/assets/photos/photo-cafe.webp.asset.json";
+import photoMoto from "@/assets/photos/photo-moto.webp.asset.json";
+import photoMirror from "@/assets/photos/photo-mirror.webp.asset.json";
 
 const current = {
   company: "Zaghdan Company for Import and Export of Perfumes",
@@ -47,8 +47,8 @@ export function ExperienceSection() {
     <div className="space-y-8">
       <Reveal>
         <div className="flex flex-col gap-3">
-          <span className="text-xs uppercase tracking-[0.2em] text-primary">Section 06</span>
-          <h2 className="text-4xl font-semibold sm:text-5xl">
+          <span className="eyebrow"><span className="eyebrow-num">02</span>Experience</span>
+          <h2 className="section-title">
             <span className="text-gradient-teal">Experience</span>
           </h2>
           <p className="max-w-2xl text-muted-foreground">

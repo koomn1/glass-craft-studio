@@ -180,8 +180,8 @@ export function AssistantSection() {
     <div className="space-y-8">
       <Reveal>
         <div className="flex flex-col gap-3">
-          <span className="text-xs uppercase tracking-[0.2em] text-primary">Section 04</span>
-          <h2 className="text-4xl font-semibold sm:text-5xl">
+          <span className="eyebrow"><span className="eyebrow-num">06</span>Assistant</span>
+          <h2 className="section-title">
             AI <span className="text-gradient-teal">Assistant</span>
           </h2>
           <p className="max-w-2xl text-muted-foreground">

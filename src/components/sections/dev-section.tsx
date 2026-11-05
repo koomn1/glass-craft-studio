@@ -4,8 +4,8 @@ import { Reveal } from "@/components/reveal";
 import { ProjectModal, type ProjectDetail } from "@/components/project-modal";
 import { PhotoStrip } from "@/components/photo-strip";
 import { Brain, Code2, Sparkles, Workflow, Database, Cpu } from "lucide-react";
-import photoHotel from "@/assets/photos/photo-hotel.jpg.asset.json";
-import photoMirror2 from "@/assets/photos/photo-mirror2.jpg.asset.json";
+import photoHotel from "@/assets/photos/photo-hotel.webp.asset.json";
+import photoMirror2 from "@/assets/photos/photo-mirror2.webp.asset.json";
 
 const projects: ProjectDetail[] = [
   {
@@ -71,8 +71,8 @@ export function DevSection() {
     <div className="space-y-8">
       <Reveal>
         <div className="flex flex-col gap-3">
-          <span className="text-xs uppercase tracking-[0.2em] text-primary">Section 02</span>
-          <h2 className="text-4xl font-semibold sm:text-5xl">
+          <span className="eyebrow"><span className="eyebrow-num">03</span>AI &amp; Dev</span>
+          <h2 className="section-title">
             AI &amp; <span className="text-gradient-teal">Development</span>
           </h2>
           <p className="max-w-2xl text-muted-foreground">

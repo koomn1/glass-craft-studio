@@ -5,11 +5,14 @@ import {
   createRootRouteWithContext,
   useRouter,
   HeadContent,
+  type ErrorComponentProps,
   Scripts,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
+import iosMedium from "../assets/fonts/ios-medium.woff2.asset.json";
+import iosBold from "../assets/fonts/ios-bold.woff2.asset.json";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
 function NotFoundComponent() {
@@ -34,7 +37,7 @@ function NotFoundComponent() {
   );
 }
 
-function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
+function ErrorComponent({ error, reset }: ErrorComponentProps) {
   console.error(error);
   const router = useRouter();
   useEffect(() => {
@@ -79,18 +82,29 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Jo Badawy | Portfolio" },
       { name: "description", content: "Vet Med & AI Dev" },
-      { name: "author", content: "Lovable" },
+      { name: "author", content: "Dr. Youssef Badawy" },
       { property: "og:title", content: "Jo Badawy | Portfolio" },
       { property: "og:description", content: "Vet Med & AI Dev" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
       { name: "twitter:title", content: "Jo Badawy | Portfolio" },
       { name: "twitter:description", content: "Vet Med & AI Dev" },
-      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/014452f6-b11d-49e7-a303-4a65db866a5d" },
-      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/014452f6-b11d-49e7-a303-4a65db866a5d" },
     ],
     links: [
+      {
+        rel: "preload",
+        as: "font",
+        type: "font/woff2",
+        href: iosMedium.url,
+        crossOrigin: "anonymous",
+      },
+      {
+        rel: "preload",
+        as: "font",
+        type: "font/woff2",
+        href: iosBold.url,
+        crossOrigin: "anonymous",
+      },
       {
         rel: "stylesheet",
         href: appCss,
