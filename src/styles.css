@@ -281,6 +281,37 @@
   }
 }
 
+/* Photo frames: glass look without backdrop-filter (photos cover the frame,
+   so a live blur only costs GPU time while frames animate). */
+.photo-frame {
+  background:
+    linear-gradient(180deg, var(--glass-sheen) 0%, transparent 50%),
+    color-mix(in oklab, var(--card) 70%, transparent);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-elevated), inset 0 1px 0 0 var(--glass-rim);
+  contain: layout paint;
+  transform: translateZ(0);
+}
+
+/* Compositor-only idle float for photos (pauses when off-screen via content-visibility parents) */
+@keyframes photo-float {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, var(--float-y, -8px), 0); }
+}
+.photo-float {
+  animation: photo-float var(--float-dur, 7s) ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Fade photos in once decoded so they don't pop in mid-scroll */
+.photo-img {
+  opacity: 0;
+  transition: opacity 0.5s ease, transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.photo-img.is-loaded {
+  opacity: 1;
+}
+
 /* Smooth scrolling + scroll-snap pinning for sections */
 html {
   scroll-behavior: smooth;
