@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { TiltCard } from "@/components/tilt-card";
 import { Reveal } from "@/components/reveal";
+import { FadeImg } from "@/components/fade-img";
 import { ProjectModal, type ProjectDetail } from "@/components/project-modal";
 import {
   Stethoscope, Microscope, HeartPulse, Syringe, Award, BookOpen,
@@ -134,25 +135,25 @@ export function VetSection() {
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.7, delay: i * 0.12, ease: [0.2, 0.8, 0.2, 1] }}
                 whileHover={{ scale: 1.04, rotate: 0, zIndex: 5 }}
-                className={`glass-strong group absolute overflow-hidden rounded-[1.75rem] p-1.5 shadow-xl ${p.cls}`}
+                className={`photo-frame group absolute overflow-hidden rounded-[1.75rem] p-1.5 ${p.cls}`}
               >
-                <motion.div
-                  animate={p.float}
-                  transition={{ duration: p.dur, repeat: Infinity, ease: "easeInOut" }}
-                  className="relative h-full w-full overflow-hidden rounded-[1.4rem]"
+                <div
+                  className="photo-float relative h-full w-full overflow-hidden rounded-[1.4rem]"
+                  style={{ "--float-y": `${p.float.y[1]}px`, "--float-dur": `${p.dur}s` } as React.CSSProperties}
                 >
-                  <img
+                  <FadeImg
                     src={p.src}
                     alt={p.alt}
                     loading="lazy"
-                    decoding="async"
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.08]"
+                    width={600}
+                    height={800}
+                    className="h-full w-full object-cover group-hover:scale-[1.08]"
                   />
                   <div
                     className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
                     style={{ background: "linear-gradient(180deg, transparent 50%, color-mix(in oklab, var(--teal) 50%, transparent))" }}
                   />
-                </motion.div>
+                </div>
               </motion.figure>
             ))}
           </div>
