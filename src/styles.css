@@ -361,9 +361,9 @@
   position: absolute;
   left: 0;
   width: 100%;
-  top: 50%;
+  top: 74%;
   height: 120px;
-  opacity: 0.5;
+  opacity: 0.45;
   transform: translate3d(calc(var(--px, 0) * 12px), calc(var(--py, 0) * 6px), 0);
 }
 .spatial-vital {
