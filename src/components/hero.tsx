@@ -154,12 +154,12 @@ export function Hero({ onExplore }: HeroProps) {
             </figure>
 
             {/* Vitals → Neural mini window */}
+            <div className="absolute right-0 top-4 w-[44%] sm:right-[-4%]" style={{ translate: "0 0 90px" }}>
             <motion.div
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1, duration: 0.6, ease }}
-              className="spatial-ornament absolute right-0 top-4 w-[44%] rounded-2xl p-3 sm:right-[-4%]"
-              style={{ translate: "0 0 90px" }}
+              className="spatial-ornament rounded-2xl p-3"
             >
               <span className="flex items-center justify-between text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
                 Vitals <span className="text-primary">→ Neural</span>
@@ -179,14 +179,15 @@ export function Hero({ onExplore }: HeroProps) {
                 ))}
               </svg>
             </motion.div>
+            </div>
 
             {/* Floating status widget */}
+            <div className="absolute bottom-6 left-2 sm:left-4" style={{ translate: "0 0 120px" }}>
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.9, duration: 0.6, ease }}
-              className="spatial-ornament absolute bottom-6 left-2 flex items-center gap-3 rounded-2xl px-4 py-3 sm:left-4"
-              style={{ translate: "0 0 120px" }}
+              className="spatial-ornament flex items-center gap-3 rounded-2xl px-4 py-3"
             >
               <span className="tab-indicator grid h-9 w-9 place-items-center rounded-xl text-primary-foreground">
                 <PawPrint className="h-4 w-4" aria-hidden="true" />
@@ -196,6 +197,7 @@ export function Hero({ onExplore }: HeroProps) {
                 <span className="block text-[11px] text-muted-foreground">Healthcare meets tech</span>
               </span>
             </motion.div>
+            </div>
           </div>
         </div>
       </motion.div>
