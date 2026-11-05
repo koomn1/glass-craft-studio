@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useRef, useState, type JSX } from "react";
+import { useRef, useState, type ComponentType } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Stethoscope, Cpu, Film, Sparkles, Wrench, Briefcase, Mail } from "lucide-react";
 
@@ -87,7 +87,7 @@ const TABS: DockItem[] = [
   { id: "contact", label: "Contact", icon: Mail },
 ];
 
-const SECTIONS: Record<string, () => JSX.Element> = {
+const SECTIONS: Record<string, ComponentType> = {
   vet: VetSection,
   experience: ExperienceSection,
   dev: DevSection,
