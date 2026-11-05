@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import { motion } from "framer-motion";
 import { FadeImg } from "@/components/fade-img";
 import { ArrowDown, Mail, MapPin, PawPrint, BrainCircuit, Clapperboard } from "lucide-react";
@@ -116,10 +117,9 @@ export function Hero({ onExplore }: HeroProps) {
           }}
           aria-hidden="true"
         />
-        <motion.figure
-          whileHover={{ rotate: -1.5 }}
+        <figure
           className="photo-frame photo-float absolute left-0 top-0 h-[78%] w-[66%] overflow-hidden rounded-[2.25rem] p-1.5"
-          style={{ "--float-y": "-8px", "--float-dur": "7s" } as React.CSSProperties}
+          style={{ "--float-y": "-8px", "--float-dur": "7s" } as CSSProperties}
         >
           <img
             src={portrait.url}
@@ -131,11 +131,10 @@ export function Hero({ onExplore }: HeroProps) {
             fetchPriority="high"
             decoding="async"
           />
-        </motion.figure>
-        <motion.figure
-          whileHover={{ rotate: 1.5 }}
+        </figure>
+        <figure
           className="photo-frame photo-float absolute bottom-0 right-0 h-[58%] w-[56%] overflow-hidden rounded-[2.25rem] p-1.5"
-          style={{ "--float-y": "8px", "--float-dur": "8s", animationDelay: "0.6s" } as React.CSSProperties}
+          style={{ "--float-y": "8px", "--float-dur": "8s", animationDelay: "0.6s" } as CSSProperties}
         >
           <FadeImg
             src={sitting.url}
@@ -145,7 +144,7 @@ export function Hero({ onExplore }: HeroProps) {
             className="h-full w-full rounded-[1.85rem] object-cover"
             loading="lazy"
           />
-        </motion.figure>
+        </figure>
 
         {/* Floating status widget */}
         <motion.div

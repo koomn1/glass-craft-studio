@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { TiltCard } from "@/components/tilt-card";
@@ -139,7 +140,7 @@ export function VetSection() {
               >
                 <div
                   className="photo-float relative h-full w-full overflow-hidden rounded-[1.4rem]"
-                  style={{ "--float-y": `${p.float.y[1]}px`, "--float-dur": `${p.dur}s` } as React.CSSProperties}
+                  style={{ "--float-y": `${p.float.y[1]}px`, "--float-dur": `${p.dur}s` } as CSSProperties}
                 >
                   <FadeImg
                     src={p.src}
