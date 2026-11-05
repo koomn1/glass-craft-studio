@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Reveal } from "@/components/reveal";
+import { FadeImg } from "@/components/fade-img";
 
 export interface PhotoItem {
   src: string;
@@ -38,15 +39,14 @@ export function PhotoStrip({ items, title, variant = "row" }: PhotoStripProps) {
               key={p.src + i}
               whileHover={{ y: -4, scale: 1.01 }}
               transition={{ type: "spring", stiffness: 280, damping: 24 }}
-              className="glass group relative overflow-hidden rounded-3xl p-1.5"
+              className="photo-frame group relative overflow-hidden rounded-3xl p-1.5"
             >
               <div className={`relative overflow-hidden rounded-2xl ${aspectClass(p.aspect)}`}>
-                <img
+                <FadeImg
                   src={p.src}
                   alt={p.alt}
                   loading="lazy"
-                  decoding="async"
-                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.06]"
+                  className="absolute inset-0 h-full w-full object-cover group-hover:scale-[1.06]"
                 />
                 <div
                   className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
