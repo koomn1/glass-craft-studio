@@ -440,3 +440,29 @@ html {
     transition-duration: 0.001ms !important;
   }
 }
+
+/* Scoped, complementary section accents. */
+:root {
+ --section-vet: oklch(0.47 0.11 169); --section-experience: oklch(0.48 0.13 52);
+ --section-dev: oklch(0.48 0.15 253); --section-skills: oklch(0.45 0.10 130);
+ --section-video: oklch(0.49 0.17 355); --section-assistant: oklch(0.49 0.15 290);
+ --section-contact: oklch(0.48 0.16 27);
+}
+.dark {
+ --section-vet: oklch(0.78 0.13 169); --section-experience: oklch(0.80 0.12 67);
+ --section-dev: oklch(0.78 0.11 248); --section-skills: oklch(0.81 0.12 130);
+ --section-video: oklch(0.79 0.12 355); --section-assistant: oklch(0.80 0.10 290);
+ --section-contact: oklch(0.79 0.12 27);
+}
+[data-tone="vet"] { --section-color: var(--section-vet); }
+[data-tone="experience"] { --section-color: var(--section-experience); }
+[data-tone="dev"] { --section-color: var(--section-dev); }
+[data-tone="skills"] { --section-color: var(--section-skills); }
+[data-tone="video"] { --section-color: var(--section-video); }
+[data-tone="assistant"] { --section-color: var(--section-assistant); }
+[data-tone="contact"] { --section-color: var(--section-contact); }
+.section-scope { --primary: var(--section-color); --teal: var(--section-color); --teal-bright: color-mix(in oklab, var(--section-color) 78%, var(--card)); }
+.skip-link { position: fixed; top: 0.75rem; left: 50%; z-index: 100; transform: translate(-50%, -200%); padding: 0.75rem 1rem; color: var(--primary-foreground); background: var(--primary); border-radius: var(--radius); }
+.skip-link:focus { transform: translate(-50%, 0); }
+.spatial-window { border-top-color: color-mix(in oklab, var(--primary) 40%, var(--window-edge)); }
+.dock-item:focus-visible .dock-tip { opacity: 1; }

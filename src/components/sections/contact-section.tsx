@@ -48,10 +48,10 @@ export function ContactSection() {
         </div>
       </Reveal>
 
-      <div className="grid gap-4 lg:grid-cols-2">
+      <div className="grid min-w-0 grid-cols-1 gap-4 lg:grid-cols-2 [&>*]:min-w-0">
         <Reveal>
           <div className="space-y-4">
-            <div className="glass rounded-3xl p-6">
+            <div className="glass rounded-3xl p-4 sm:p-6">
               <h3 className="mb-4 text-lg font-semibold">Direct Contact</h3>
               <ul className="space-y-3">
                 {directs.map((d) => {
@@ -63,7 +63,7 @@ export function ContactSection() {
                       </span>
                       <div className="min-w-0">
                         <p className="text-xs uppercase tracking-widest text-muted-foreground">{d.label}</p>
-                        <p className="truncate text-sm font-medium">{d.value}</p>
+                        <p className="break-all text-sm font-medium">{d.value}</p>
                       </div>
                     </div>
                   );
@@ -82,7 +82,7 @@ export function ContactSection() {
               </ul>
             </div>
 
-            <div className="glass rounded-3xl p-6">
+            <div className="glass rounded-3xl p-4 sm:p-6">
               <h3 className="mb-4 text-lg font-semibold">Quick Contact</h3>
               <div className="flex flex-wrap gap-2">
                 {quick.map((q) => {
@@ -125,7 +125,7 @@ export function ContactSection() {
         <Reveal delay={0.1}>
           <form
             onSubmit={(e) => { e.preventDefault(); handleSend("whatsapp"); }}
-            className="glass flex h-full flex-col gap-4 rounded-3xl p-6"
+            className="glass flex h-full min-w-0 flex-col gap-4 rounded-3xl p-4 sm:p-6"
           >
             <div>
               <label htmlFor="c-name" className="mb-1.5 block text-xs font-medium uppercase tracking-widest text-muted-foreground">Your Name</label>

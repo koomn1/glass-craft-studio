@@ -2,23 +2,25 @@ import { useRef, type CSSProperties } from "react";
 import { usePointerParallax } from "@/hooks/use-pointer-parallax";
 import { motion } from "framer-motion";
 import { FadeImg } from "@/components/fade-img";
-import { ArrowDown, Mail, MapPin, PawPrint, BrainCircuit, Clapperboard } from "lucide-react";
+import { ArrowDown, Mail, MapPin, PawPrint, Cpu, Film } from "@/components/material-icons";
+import { Button } from "@/components/ui/button";
 import portrait from "@/assets/photos/photo-sun.webp.asset.json";
 import sitting from "@/assets/photos/photo-sitting.webp.asset.json";
 
 interface HeroProps {
   onExplore: () => void;
+  onOpen: (id: string) => void;
 }
 
 const ease = [0.2, 0.8, 0.2, 1] as const;
 
 const pillars = [
-  { icon: PawPrint, label: "Veterinary Medicine" },
-  { icon: BrainCircuit, label: "Applied AI" },
-  { icon: Clapperboard, label: "Storytelling" },
+  { icon: PawPrint, label: "Veterinary Medicine", id: "vet" },
+  { icon: Cpu, label: "Applied AI", id: "dev" },
+  { icon: Film, label: "Storytelling", id: "video" },
 ];
 
-export function Hero({ onExplore }: HeroProps) {
+export function Hero({ onExplore, onOpen }: HeroProps) {
   const stageRef = useRef<HTMLDivElement>(null);
   usePointerParallax(stageRef);
 
@@ -44,7 +46,7 @@ export function Hero({ onExplore }: HeroProps) {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.1, ease }}
-          className="mt-6 text-[clamp(2.75rem,1.8rem+4.5vw,5.25rem)] font-bold leading-[1.02] tracking-[-0.04em]"
+          className="mt-6 text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.02] tracking-normal"
         >
           Dr. Youssef
           <br className="hidden sm:block" /> <span className="text-gradient-teal">Badawy</span>
@@ -65,11 +67,11 @@ export function Hero({ onExplore }: HeroProps) {
           transition={{ duration: 0.8, delay: 0.35, ease }}
           className="mt-7 flex flex-wrap justify-center gap-2 lg:justify-start"
         >
-          {pillars.map(({ icon: Icon, label }) => (
-            <li key={label} className="glass-subtle inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-sm font-medium">
-              <Icon className="h-4 w-4 text-primary" strokeWidth={2.2} aria-hidden="true" />
+          {pillars.map(({ icon: Icon, label, id }) => (
+            <li key={label}><Button variant="ghost" onClick={() => onOpen(id)} data-tone={id} className="section-scope glass-subtle gap-2 rounded-full px-3.5 py-1.5 text-sm font-medium">
+              <Icon className="h-4 w-4 text-primary" aria-hidden="true" />
               {label}
-            </li>
+            </Button></li>
           ))}
         </motion.ul>
 
@@ -79,16 +81,17 @@ export function Hero({ onExplore }: HeroProps) {
           transition={{ delay: 0.55 }}
           className="mt-9 flex flex-wrap items-center justify-center gap-3 lg:justify-start"
         >
-          <button
+          <Button
             type="button"
             onClick={onExplore}
             className="tab-indicator inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-primary-foreground transition-transform hover:scale-[1.03] active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           >
             Explore my work
             <ArrowDown className="h-4 w-4" aria-hidden="true" />
-          </button>
+          </Button>
           <a
-            href="mailto:yo01009950871@gmail.com"
+            href="#portfolio-content"
+            onClick={(event) => { event.preventDefault(); onOpen("contact"); }}
             className="glass inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-transform hover:scale-[1.03] active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             <Mail className="h-4 w-4 text-primary" aria-hidden="true" />

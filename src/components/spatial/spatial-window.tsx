@@ -1,9 +1,11 @@
 import type { ReactNode } from "react";
-import { ChevronLeft, ChevronRight, type LucideIcon } from "lucide-react";
+import { ChevronLeft, ChevronRight, type MaterialIcon } from "@/components/material-icons";
+import { Button } from "@/components/ui/button";
 
 interface SpatialWindowProps {
   title: string;
-  icon: LucideIcon;
+  icon: MaterialIcon;
+  tone: string;
   index: number;
   total: number;
   prev?: { label: string; onClick: () => void };
@@ -12,9 +14,9 @@ interface SpatialWindowProps {
 }
 
 /** A floating visionOS window: ornament on top, content, and the grab bar below. */
-export function SpatialWindow({ title, icon: Icon, index, total, prev, next, children }: SpatialWindowProps) {
+export function SpatialWindow({ title, tone, icon: Icon, index, total, prev, next, children }: SpatialWindowProps) {
   return (
-    <div className="relative">
+    <div className="relative section-scope" data-tone={tone}>
       {/* Top ornament */}
       <div className="relative z-10 -mb-5 flex justify-center">
         <div className="spatial-ornament inline-flex items-center gap-2.5 rounded-full py-1.5 pl-1.5 pr-4 text-sm font-semibold">
@@ -34,16 +36,16 @@ export function SpatialWindow({ title, icon: Icon, index, total, prev, next, chi
         {(prev || next) && (
           <div className="mt-10 flex items-center justify-between gap-3 border-t border-border pt-5">
             {prev ? (
-              <button type="button" onClick={prev.onClick} className="spatial-chip group inline-flex items-center gap-1.5 rounded-full py-2 pl-2 pr-4 text-sm font-semibold">
+              <Button variant="ghost" type="button" onClick={prev.onClick} className="spatial-chip group inline-flex items-center gap-1.5 rounded-full py-2 pl-2 pr-4 text-sm font-semibold">
                 <ChevronLeft className="h-4 w-4 text-primary transition-transform group-hover:-translate-x-0.5" aria-hidden="true" />
                 {prev.label}
-              </button>
+              </Button>
             ) : <span />}
             {next ? (
-              <button type="button" onClick={next.onClick} className="spatial-chip group inline-flex items-center gap-1.5 rounded-full py-2 pl-4 pr-2 text-sm font-semibold">
+              <Button variant="ghost" type="button" onClick={next.onClick} className="spatial-chip group inline-flex items-center gap-1.5 rounded-full py-2 pl-4 pr-2 text-sm font-semibold">
                 {next.label}
                 <ChevronRight className="h-4 w-4 text-primary transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
-              </button>
+              </Button>
             ) : <span />}
           </div>
         )}

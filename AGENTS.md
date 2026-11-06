@@ -5,3 +5,7 @@
 - Large moving or full-page surfaces (photo frames, spatial window, backdrop) must not use `backdrop-filter`; reserve live blur for small chrome (dock, ornaments, header) — blur under animation caused visible lag.
 - Pointer parallax writes CSS vars on the owning element via `usePointerParallax`, never on `:root` — avoids page-wide style recalcs.
 - Never hand-write `-webkit-backdrop-filter`; the production CSS build would drop the standard property for Chrome.
+
+- Main navigation and chrome use bundled Google Material Symbols Rounded SVGs; preserve each source viewBox so icons render without a font download.
+- Section accent colors use semantic CSS tokens scoped by data-tone, with navigation metadata defining section identity.
+- Visitor counts use Lovable built-in Analytics; never expose analytics credentials or fabricate public counters.

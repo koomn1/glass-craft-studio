@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useRef, useState, type ComponentType } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { Stethoscope, Cpu, Film, Sparkles, Wrench, Briefcase, Mail } from "lucide-react";
+import { PawPrint, Cpu, Film, Sparkles, Wrench, Briefcase, Mail } from "@/components/material-icons";
 
 import { ThemeProvider } from "@/components/theme-provider";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -78,13 +78,13 @@ export const Route = createFileRoute("/")({
 
 // Order: Vet → Experience → AI/Dev → Skills → Video → Assistant → Contact
 const TABS: DockItem[] = [
-  { id: "vet", label: "Vet", icon: Stethoscope },
-  { id: "experience", label: "Experience", icon: Briefcase },
-  { id: "dev", label: "AI & Dev", icon: Cpu },
-  { id: "skills", label: "Skills", icon: Wrench },
-  { id: "video", label: "Video", icon: Film },
-  { id: "assistant", label: "Assistant", icon: Sparkles },
-  { id: "contact", label: "Contact", icon: Mail },
+  { id: "vet", tone: "vet", label: "Vet", icon: PawPrint },
+  { id: "experience", tone: "experience", label: "Experience", icon: Briefcase },
+  { id: "dev", tone: "dev", label: "AI & Dev", icon: Cpu },
+  { id: "skills", tone: "skills", label: "Skills", icon: Wrench },
+  { id: "video", tone: "video", label: "Video", icon: Film },
+  { id: "assistant", tone: "assistant", label: "Assistant", icon: Sparkles },
+  { id: "contact", tone: "contact", label: "Contact", icon: Mail },
 ];
 
 const SECTIONS: Record<string, ComponentType> = {
@@ -133,6 +133,7 @@ function Index() {
 
   return (
     <div className="relative min-h-screen">
+      <a href="#portfolio-content" className="skip-link">Skip to portfolio</a>
       <SpatialBackdrop />
 
       {/* Header: logo + theme toggle only (navigation lives in the dock) */}
@@ -144,7 +145,7 @@ function Index() {
           style={{ boxShadow: "0 6px 24px -8px color-mix(in oklab, var(--teal) 35%, transparent)" }}
         >
           <span
-            className="grid h-8 w-8 place-items-center rounded-full bg-white ring-2 ring-primary/70 sm:h-9 sm:w-9"
+            className="grid h-8 w-8 place-items-center rounded-full bg-card ring-2 ring-primary/70 sm:h-9 sm:w-9"
             style={{ boxShadow: "0 2px 10px color-mix(in oklab, var(--teal) 35%, transparent)" }}
           >
             <img src={logo.url} alt="" aria-hidden="true" width={32} height={32} className="h-6 w-6 object-contain sm:h-7 sm:w-7" />
@@ -158,10 +159,10 @@ function Index() {
       </header>
 
       <main className="pt-20 sm:pt-24">
-        <Hero onExplore={scrollToStage} />
+        <Hero onExplore={scrollToStage} onOpen={open} />
 
-        <div ref={stageRef} className="mx-auto max-w-6xl scroll-mt-6 px-3 pt-4 sm:px-4">
-          <section className="spatial-stage relative pb-16" id={`panel-${active}`} role="tabpanel" aria-labelledby={`tab-${active}`}>
+        <div id="portfolio-content" ref={stageRef} className="mx-auto max-w-6xl scroll-mt-20 px-3 pt-4 sm:px-4">
+          <section className="spatial-stage section-scope relative pb-16" data-tone={current.tone} id={`panel-${active}`} role="tabpanel" aria-labelledby={`tab-${active}`}>
             <AnimatePresence mode="wait" custom={dir} initial={false}>
               <motion.div
                 key={active}
@@ -174,6 +175,7 @@ function Index() {
                 style={{ transformOrigin: "50% 30%" }}
               >
                 <SpatialWindow
+                  tone={current.tone}
                   title={current.label}
                   icon={current.icon}
                   index={idx}
