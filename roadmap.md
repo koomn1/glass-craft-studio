@@ -5,6 +5,6 @@
 - [x] Apply uploaded iOS fonts (bold + medium) site-wide
 - [x] Routine package security update
 
-- [ ] Refresh main icons with Google Material styling and varied section colors
-- [ ] Make section labels and contact access easier to find on phones and desktop
-- [ ] Verify built-in visitor history and provide access instructions
+- [x] Refresh main icons with Google Material styling and varied section colors
+- [x] Make section labels and contact access easier to find on phones and desktop
+- [x] Verify built-in visitor history and provide access instructions
