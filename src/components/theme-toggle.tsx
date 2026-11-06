@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { Moon, Sun } from "lucide-react";
+import { Moon, Sun } from "@/components/material-icons";
+import { Button } from "@/components/ui/button";
 import { useTheme } from "./theme-provider";
 
 const options = [
@@ -15,7 +16,7 @@ export function ThemeToggle() {
         const Icon = opt.icon;
         const active = resolved === opt.value;
         return (
-          <button
+          <Button variant="ghost"
             key={opt.value}
             role="radio"
             aria-checked={active}
@@ -31,7 +32,7 @@ export function ThemeToggle() {
               />
             )}
             <Icon className={`relative h-4 w-4 ${active ? "text-primary-foreground" : ""}`} />
-          </button>
+          </Button>
         );
       })}
     </div>

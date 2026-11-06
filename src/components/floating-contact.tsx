@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MessageCircle, Mail, Send, Instagram, Music2, X, Share2 } from "lucide-react";
+import { MessageCircle, Mail, Send, Instagram, Music2, X, Share2 } from "@/components/material-icons";
 
 const links = [
-  { label: "WhatsApp", href: "https://wa.me/2001018995002", icon: MessageCircle, color: "oklch(0.72 0.18 150)" },
-  { label: "Email", href: "mailto:yo01009950871@gmail.com", icon: Mail, color: "oklch(0.65 0.18 25)" },
-  { label: "Telegram", href: "https://t.me/DR_Youssef_Badawy", icon: Send, color: "oklch(0.70 0.15 230)" },
-  { label: "Instagram", href: "https://instagram.com/youssef_mo7ammed_02", icon: Instagram, color: "oklch(0.65 0.20 350)" },
-  { label: "TikTok", href: "https://tiktok.com/@youssef_m_badawy", icon: Music2, color: "oklch(0.30 0.04 200)" },
+  { label: "WhatsApp", href: "https://wa.me/2001018995002", icon: MessageCircle, color: "var(--section-vet)" },
+  { label: "Email", href: "mailto:yo01009950871@gmail.com", icon: Mail, color: "var(--section-contact)" },
+  { label: "Telegram", href: "https://t.me/DR_Youssef_Badawy", icon: Send, color: "var(--section-dev)" },
+  { label: "Instagram", href: "https://instagram.com/youssef_mo7ammed_02", icon: Instagram, color: "var(--section-video)" },
+  { label: "TikTok", href: "https://tiktok.com/@youssef_m_badawy", icon: Music2, color: "var(--section-assistant)" },
 ];
 
 export function FloatingContact() {
@@ -56,7 +56,7 @@ export function FloatingContact() {
           initial={{ rotate: -90, opacity: 0 }}
           animate={{ rotate: 0, opacity: 1 }}
           transition={{ type: "spring", stiffness: 320, damping: 22 }}
-          className="block text-white"
+          className="block text-primary-foreground"
         >
           {open ? <X className="h-5 w-5" /> : <Share2 className="h-5 w-5" />}
         </motion.span>
@@ -98,7 +98,7 @@ export function FloatingContact() {
                     >
                       <span
                         className="grid h-9 w-9 place-items-center rounded-xl shadow-md transition-transform group-hover:scale-105"
-                        style={{ background: l.color, color: "white" }}
+                        style={{ background: l.color, color: "var(--primary-foreground)" }}
                       >
                         <Icon className="h-4 w-4" />
                       </span>
