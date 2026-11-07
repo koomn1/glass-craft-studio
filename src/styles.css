@@ -437,7 +437,8 @@ html {
   transition-property: transform, opacity !important;
 }
 .motion-surface { will-change: transform, opacity; }
-.photo-frame:hover { z-index: 5; }
+figure.photo-frame:hover { z-index: 5; }
+.project-dialog { background: var(--card); }
 .hero-glow { filter: none; }
 header .glass-strong { backdrop-filter: blur(8px); }
 
