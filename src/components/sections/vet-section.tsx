@@ -1,6 +1,7 @@
 import type { CSSProperties } from "react";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { useSpatialMotion } from "@/hooks/use-spatial-motion";
 import { TiltCard } from "@/components/tilt-card";
 import { Reveal } from "@/components/reveal";
 import { FadeImg } from "@/components/fade-img";
@@ -70,6 +71,7 @@ const cases: ProjectDetail[] = [
 ];
 
 export function VetSection() {
+  const spatialMotion = useSpatialMotion();
   const [active, setActive] = useState<ProjectDetail | null>(null);
 
   return (
@@ -120,7 +122,7 @@ export function VetSection() {
           {/* Animated photo collage — no captions */}
           <div className="relative h-[360px] sm:h-[420px]">
             <div
-              className="absolute inset-0 -z-10 rounded-[2rem] blur-3xl opacity-40"
+              className="absolute inset-0 -z-10 rounded-[2rem] opacity-30"
               style={{ background: "radial-gradient(60% 60% at 50% 50%, var(--teal-bright), transparent 70%)" }}
               aria-hidden="true"
             />
@@ -131,11 +133,11 @@ export function VetSection() {
             ].map((p, i) => (
               <motion.figure
                 key={p.src}
-                initial={{ opacity: 0, scale: 0.9, rotate: p.rot * 2 }}
+                initial={spatialMotion ? { opacity: 0, scale: 0.98, rotate: p.rot } : { opacity: 0 }}
                 whileInView={{ opacity: 1, scale: 1, rotate: p.rot }}
                 viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.7, delay: i * 0.12, ease: [0.2, 0.8, 0.2, 1] }}
-                whileHover={{ scale: 1.04, rotate: 0, zIndex: 5 }}
+                transition={{ duration: 0.35, delay: i * 0.05, ease: [0.2, 0.8, 0.2, 1] }}
+                whileHover={spatialMotion ? { scale: 1.02, rotate: 0 } : undefined}
                 className={`photo-frame group absolute overflow-hidden rounded-[1.75rem] p-1.5 ${p.cls}`}
               >
                 <div
@@ -177,7 +179,7 @@ export function VetSection() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.45, delay: i * 0.06 }}
-                    whileHover={{ y: -3 }}
+                    whileHover={spatialMotion ? { y: -2 } : undefined}
                     className="glass relative overflow-hidden rounded-2xl p-4"
                   >
                     <div className="mb-2 inline-grid h-9 w-9 place-items-center rounded-xl glass-subtle">

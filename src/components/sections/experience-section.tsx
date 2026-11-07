@@ -1,5 +1,6 @@
 import type { CSSProperties } from "react";
 import { motion } from "framer-motion";
+import { useSpatialMotion } from "@/hooks/use-spatial-motion";
 import { Reveal } from "@/components/reveal";
 import { FadeImg } from "@/components/fade-img";
 import { Briefcase, Megaphone, Bot, Truck, Sparkles, HeartHandshake } from "lucide-react";
@@ -45,6 +46,7 @@ const additional = [
 ];
 
 export function ExperienceSection() {
+  const spatialMotion = useSpatialMotion();
   return (
     <div className="space-y-8">
       <Reveal>
@@ -62,7 +64,7 @@ export function ExperienceSection() {
       <Reveal delay={0.05}>
         <div className="glass relative overflow-hidden rounded-3xl p-6 sm:p-8">
           <div
-            className="absolute -right-16 -top-16 h-48 w-48 rounded-full opacity-50 blur-3xl"
+            className="absolute -right-16 -top-16 h-48 w-48 rounded-full opacity-30"
             style={{ background: "radial-gradient(circle, var(--teal-bright), transparent 70%)" }}
             aria-hidden="true"
           />
@@ -125,7 +127,7 @@ export function ExperienceSection() {
       <Reveal>
         <div className="relative mx-auto h-[360px] w-full max-w-3xl sm:h-[420px]">
           <div
-            className="absolute inset-0 -z-10 rounded-[2rem] blur-3xl opacity-40"
+            className="absolute inset-0 -z-10 rounded-[2rem] opacity-30"
             style={{ background: "radial-gradient(60% 60% at 50% 50%, var(--teal-bright), transparent 70%)" }}
             aria-hidden="true"
           />
@@ -136,11 +138,11 @@ export function ExperienceSection() {
           ].map((p, i) => (
             <motion.figure
               key={p.src}
-              initial={{ opacity: 0, scale: 0.9, rotate: p.rot * 2 }}
+              initial={spatialMotion ? { opacity: 0, scale: 0.98, rotate: p.rot } : { opacity: 0 }}
               whileInView={{ opacity: 1, scale: 1, rotate: p.rot }}
               viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.7, delay: i * 0.12, ease: [0.2, 0.8, 0.2, 1] }}
-              whileHover={{ scale: 1.04, rotate: 0, zIndex: 5 }}
+              transition={{ duration: 0.35, delay: i * 0.05, ease: [0.2, 0.8, 0.2, 1] }}
+              whileHover={spatialMotion ? { scale: 1.02, rotate: 0 } : undefined}
               className={`photo-frame group absolute overflow-hidden rounded-[1.75rem] p-1.5 ${p.cls}`}
             >
               <div

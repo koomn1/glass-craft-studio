@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Reveal } from "@/components/reveal";
 import { FadeImg } from "@/components/fade-img";
+import { useSpatialMotion } from "@/hooks/use-spatial-motion";
 
 export interface PhotoItem {
   src: string;
@@ -19,6 +20,7 @@ const aspectClass = (a?: PhotoItem["aspect"]) =>
   a === "portrait" ? "aspect-[3/4]" : a === "landscape" ? "aspect-[4/3]" : "aspect-square";
 
 export function PhotoStrip({ items, title, variant = "row" }: PhotoStripProps) {
+  const spatialMotion = useSpatialMotion();
   return (
     <Reveal>
       <div className="space-y-3">
@@ -37,7 +39,7 @@ export function PhotoStrip({ items, title, variant = "row" }: PhotoStripProps) {
           {items.map((p, i) => (
             <motion.figure
               key={p.src + i}
-              whileHover={{ y: -4, scale: 1.01 }}
+              whileHover={spatialMotion ? { y: -2, scale: 1.01 } : undefined}
               transition={{ type: "spring", stiffness: 280, damping: 24 }}
               className="photo-frame group relative overflow-hidden rounded-3xl p-1.5"
             >

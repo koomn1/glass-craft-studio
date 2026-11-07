@@ -40,7 +40,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
-                className="fixed inset-0 z-50 bg-foreground/40 backdrop-blur-md"
+                className="fixed inset-0 z-50 bg-foreground/40"
               />
             </DialogPrimitive.Overlay>
 
@@ -52,7 +52,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                 transition={{ type: "spring", stiffness: 320, damping: 30 }}
                 className="glass-strong fixed left-1/2 top-1/2 z-50 max-h-[88vh] w-[min(92vw,860px)] -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-3xl p-0 focus:outline-none"
               >
-                <header className="sticky top-0 z-10 flex items-start justify-between gap-4 border-b border-border/60 bg-background/40 p-6 backdrop-blur-xl">
+                <header className="sticky top-0 z-10 flex items-start justify-between gap-4 border-b border-border/60 bg-background/95 p-6">
                   <div className="flex items-start gap-4">
                     <div
                       className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl"

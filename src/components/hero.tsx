@@ -119,7 +119,7 @@ export function Hero({ onExplore, onOpen }: HeroProps) {
         <div ref={stageRef} className="hero-stage absolute inset-0">
           <div className="hero-tilt">
             <div
-              className="absolute inset-0 rounded-[2.5rem] opacity-60 blur-3xl"
+              className="hero-glow absolute inset-0 rounded-[2.5rem] opacity-40"
               style={{
                 translate: "0 0 -120px",
                 background:
