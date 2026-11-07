@@ -2,6 +2,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { X, ExternalLink } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useState, useEffect } from "react";
 
 export interface GalleryItem {
   type: "image" | "video";
@@ -19,6 +21,9 @@ export interface ProjectDetail {
   highlights?: string[];
   link?: string;
   gallery?: GalleryItem[];
+  challenge?: string;
+  solution?: string;
+  technologies?: string[];
 }
 
 interface ProjectModalProps {
@@ -28,6 +33,8 @@ interface ProjectModalProps {
 
 export function ProjectModal({ project, onClose }: ProjectModalProps) {
   const open = !!project;
+  const [view, setView] = useState("Overview");
+  useEffect(() => setView("Overview"), [project]);
 
   return (
     <DialogPrimitive.Root open={open} onOpenChange={(v) => !v && onClose()}>
@@ -44,7 +51,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
               />
             </DialogPrimitive.Overlay>
 
-            <DialogPrimitive.Content asChild aria-describedby={undefined}>
+            <DialogPrimitive.Content asChild aria-describedby="case-study-description">
               <motion.div
                 initial={{ opacity: 0, scale: 0.96, y: 16 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -54,11 +61,8 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
               >
                 <header className="sticky top-0 z-10 flex items-start justify-between gap-4 border-b border-border/60 bg-background/95 p-6">
                   <div className="flex items-start gap-4">
-                    <div
-                      className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl"
-                      style={{ background: "linear-gradient(135deg, var(--teal), var(--teal-bright))" }}
-                    >
-                      <project.icon className="h-5 w-5 text-white" aria-hidden="true" />
+                    <div className="tab-indicator grid h-12 w-12 shrink-0 place-items-center rounded-2xl">
+                      <project.icon className="h-5 w-5 text-primary-foreground" aria-hidden="true" />
                     </div>
                     <div>
                       <p className="text-xs uppercase tracking-widest text-primary/80">{project.tag}</p>
@@ -67,16 +71,21 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                       </DialogPrimitive.Title>
                     </div>
                   </div>
-                  <DialogPrimitive.Close
-                    aria-label="Close"
-                    className="glass grid h-9 w-9 shrink-0 place-items-center rounded-full transition-transform hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                  >
-                    <X className="h-4 w-4" aria-hidden="true" />
+                  <DialogPrimitive.Close asChild>
+                    <Button variant="ghost" size="icon" aria-label="Close" className="glass shrink-0 rounded-full"><X className="h-4 w-4" aria-hidden="true" /></Button>
                   </DialogPrimitive.Close>
                 </header>
 
                 <div className="space-y-6 p-6">
-                  <p className="text-base text-foreground/90">{project.longDesc ?? project.desc}</p>
+                  <DialogPrimitive.Description id="case-study-description" className="text-sm text-muted-foreground">{project.desc}</DialogPrimitive.Description>
+                  <div role="group" aria-label="Case study views" className="flex flex-wrap gap-2">
+                    {["Overview", "Case study"].map(label => <Button key={label} variant={view === label ? "default" : "outline"} aria-pressed={view === label} onClick={() => setView(label)} className="rounded-full">{label}</Button>)}
+                  </div>
+                  {view === "Overview" ? <div><h3 className="mb-2 text-sm font-semibold text-primary">Overview</h3><p className="text-base leading-relaxed text-foreground/90">{project.longDesc ?? project.desc}</p></div> : <div className="space-y-6">
+                    <section><h3 className="mb-2 text-sm font-semibold text-primary">Challenge</h3><p className="text-sm leading-relaxed">{project.challenge ?? project.desc}</p></section>
+                    <section><h3 className="mb-2 text-sm font-semibold text-primary">Solution</h3><p className="text-sm leading-relaxed">{project.solution ?? project.longDesc ?? project.desc}</p></section>
+                    <section><h3 className="mb-2 text-sm font-semibold text-primary">Technologies &amp; methods</h3><ul className="flex flex-wrap gap-2">{(project.technologies ?? project.tag.split(" · ")).map(tech => <li key={tech} className="glass-subtle rounded-full px-3 py-2 text-xs">{tech}</li>)}</ul></section>
+                  </div>}
 
                   {project.highlights && project.highlights.length > 0 && (
                     <div>
@@ -125,8 +134,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                       href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium text-primary-foreground transition-transform hover:scale-[1.03] focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                      style={{ background: "linear-gradient(135deg, var(--teal), var(--teal-bright))" }}
+                      className="tab-indicator inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium text-primary-foreground transition-transform hover:scale-[1.03] focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                     >
                       Visit project <ExternalLink className="h-4 w-4" aria-hidden="true" />
                     </a>

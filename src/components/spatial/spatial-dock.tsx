@@ -48,7 +48,7 @@ export function SpatialDock({ items, active, onChange }: SpatialDockProps) {
       <div
         role="tablist"
         aria-orientation="horizontal"
-        className="spatial-dock pointer-events-auto grid w-full max-w-3xl grid-cols-7 gap-0.5 rounded-3xl p-1.5 sm:gap-1 sm:p-2"
+        className="spatial-dock pointer-events-auto grid w-full max-w-3xl grid-cols-8 gap-0.5 rounded-3xl p-1.5 sm:gap-1 sm:p-2"
       >
         {items.map((item, i) => {
           const Icon = item.icon;
@@ -79,7 +79,7 @@ export function SpatialDock({ items, active, onChange }: SpatialDockProps) {
                 />
               )}
               <Icon className="relative h-[18px] w-[18px] sm:h-5 sm:w-5" aria-hidden="true" />
-              <span className="relative max-w-full text-[9px] sm:text-xs">{item.label}</span>
+              <span className="relative hidden max-w-full sm:block sm:text-xs">{item.label}</span>
               {/* hover label (desktop, inactive items) */}
               {!isActive && (
                 <span className="dock-tip pointer-events-none absolute -top-10 left-1/2 hidden -translate-x-1/2 whitespace-nowrap rounded-full px-3 py-1 text-xs font-semibold sm:block">

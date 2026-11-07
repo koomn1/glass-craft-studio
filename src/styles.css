@@ -101,7 +101,7 @@
   --ring: oklch(0.52 0.09 195 / 0.45);
 
   /* Glass surface — semi-transparent */
-  --glass: oklch(1 0 0 / 0.76);
+  --glass: oklch(1 0 0 / 0.48);
   --glass-border: oklch(1 0 0 / 0.75);
   --glass-rim: oklch(1 0 0 / 0.9);
   --glass-sheen: oklch(1 0 0 / 0.55);
@@ -117,7 +117,7 @@
 
   /* Spatial (visionOS) surfaces */
   --grid-line: oklch(0.50 0.10 192 / 0.13);
-  --window: oklch(1 0 0 / 0.78);
+  --window: oklch(1 0 0 / 0.62);
   --window-edge: oklch(1 0 0 / 0.85);
   --shadow-window: 0 50px 120px -40px oklch(0.30 0.06 200 / 0.38), 0 18px 40px -24px oklch(0.30 0.06 200 / 0.25);
 }
@@ -147,7 +147,7 @@
   --input: oklch(1 0 0 / 0.14);
   --ring: oklch(0.72 0.11 195 / 0.55);
 
-  --glass: oklch(0.22 0.025 210 / 0.86);
+  --glass: oklch(0.22 0.025 210 / 0.58);
   --glass-border: oklch(1 0 0 / 0.12);
   --glass-rim: oklch(1 0 0 / 0.22);
   --glass-sheen: oklch(1 0 0 / 0.07);
@@ -161,7 +161,7 @@
   --shadow-elevated: 0 24px 60px -20px oklch(0 0 0 / 0.65);
 
   --grid-line: oklch(0.74 0.12 190 / 0.12);
-  --window: oklch(0.21 0.025 210 / 0.88);
+  --window: oklch(0.21 0.025 210 / 0.68);
   --window-edge: oklch(1 0 0 / 0.16);
   --shadow-window: 0 50px 120px -40px oklch(0 0 0 / 0.8), 0 18px 40px -24px oklch(0 0 0 / 0.6);
 }
@@ -190,7 +190,7 @@
   h1, h2, h3, h4 {
     font-family: var(--font-display);
     font-weight: 700;
-    letter-spacing: -0.025em;
+    letter-spacing: 0;
     text-wrap: balance;
   }
 
@@ -209,7 +209,7 @@
     background:
       linear-gradient(180deg, var(--glass-sheen) 0%, transparent 42%),
       var(--glass);
-    backdrop-filter: none;
+    backdrop-filter: blur(24px) saturate(160%);
     border: 1px solid var(--glass-border);
     box-shadow: var(--shadow-glass), inset 0 1px 0 0 var(--glass-rim), inset 0 -1px 0 0 oklch(1 0 0 / 0.04);
   }
@@ -218,14 +218,14 @@
     background:
       linear-gradient(180deg, var(--glass-sheen) 0%, transparent 50%),
       var(--glass);
-    backdrop-filter: none;
+    backdrop-filter: blur(40px) saturate(180%);
     border: 1px solid var(--glass-border);
     box-shadow: var(--shadow-elevated), inset 0 1px 0 0 var(--glass-rim);
   }
 
   .glass-subtle {
     background: color-mix(in oklab, var(--glass) 85%, transparent);
-    backdrop-filter: none;
+    backdrop-filter: blur(14px) saturate(140%);
     border: 1px solid var(--glass-border);
     box-shadow: inset 0 1px 0 0 var(--glass-rim);
   }
@@ -264,7 +264,7 @@
     font-size: clamp(2.25rem, 1.6rem + 2.6vw, 3.75rem);
     line-height: 1.04;
     font-weight: 700;
-    letter-spacing: -0.035em;
+    letter-spacing: 0;
   }
 
   .text-gradient-teal {
@@ -301,7 +301,7 @@
 /* Compositor-only idle float for photos (pauses when off-screen via content-visibility parents) */
 @keyframes photo-float {
   0%, 100% { transform: translate3d(0, 0, 0); }
-  50% { transform: translate3d(0, calc(var(--float-y, -8px) * 0.4), 0); }
+  50% { transform: translate3d(0, var(--float-y, -8px), 0); }
 }
 .photo-float {
   animation: photo-float var(--float-dur, 7s) ease-in-out infinite;
@@ -386,12 +386,12 @@
 .spatial-dock,
 .dock-tip {
   background: linear-gradient(180deg, var(--glass-sheen) 0%, transparent 60%), var(--glass);
-  backdrop-filter: none;
+  backdrop-filter: blur(28px) saturate(180%);
   border: 1px solid var(--glass-border);
   box-shadow: var(--shadow-glass), inset 0 1px 0 0 var(--glass-rim);
 }
 .spatial-dock {
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(40px) saturate(180%);
   box-shadow: 0 24px 60px -18px oklch(0.2 0.05 200 / 0.45), inset 0 1px 0 0 var(--glass-rim);
 }
 .spatial-chip {
@@ -408,9 +408,9 @@
 .dock-item { transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1); transform-origin: 50% 100%; }
 .dock-tip { opacity: 0; transform: translate(-50%, 6px); transition: opacity 0.2s, transform 0.2s; }
 @media (min-width: 768px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-  .dock-item:hover { transform: translateY(-3px) scale(1.06); }
+  .dock-item:hover { transform: translateY(-8px) scale(1.12); }
   .dock-item:hover + .dock-item,
-  .dock-item:has(+ .dock-item:hover) { transform: translateY(-1px) scale(1.02); }
+  .dock-item:has(+ .dock-item:hover) { transform: translateY(-3px) scale(1.05); }
   .dock-item:hover .dock-tip { opacity: 1; transform: translate(-50%, 0); }
 }
 
@@ -423,7 +423,7 @@
   position: absolute;
   inset: 0;
   transform-style: preserve-3d;
-  transform: rotateY(calc(var(--px, 0) * 3deg)) rotateX(calc(var(--py, 0) * -2deg));
+  transform: rotateY(calc(var(--px, 0) * 8deg)) rotateX(calc(var(--py, 0) * -6deg));
   will-change: transform;
 }
 
@@ -438,12 +438,14 @@ html {
 }
 .motion-surface { will-change: transform, opacity; }
 figure.photo-frame:hover { z-index: 5; }
-.project-dialog { background: var(--card); }
-.hero-glow { filter: none; }
-header .glass-strong { backdrop-filter: blur(8px); }
+.project-dialog { background: var(--window); backdrop-filter: blur(40px) saturate(180%); }
+.hero-glow { filter: blur(24px); }
+header .glass-strong { backdrop-filter: blur(40px) saturate(180%); }
+button, a[href] { transition: transform 0.25s ease, opacity 0.2s ease, translate 0.25s ease; }
+.tilt-3d:hover { will-change: transform; }
 
 /* Small screens and touch pointers keep the glass, without live sampling or 3D. */
-@media (max-width: 767px), (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
+@media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .glass, .glass-strong, .glass-subtle, .spatial-dock, .spatial-ornament, .dock-tip,
   header .glass-strong { backdrop-filter: none; }
@@ -488,6 +490,7 @@ header .glass-strong { backdrop-filter: blur(8px); }
 [data-tone="video"] { --section-color: var(--section-video); }
 [data-tone="assistant"] { --section-color: var(--section-assistant); }
 [data-tone="contact"] { --section-color: var(--section-contact); }
+[data-tone="estimator"] { --section-color: var(--section-experience); }
 .section-scope { --primary: var(--section-color); --teal: var(--section-color); --teal-bright: color-mix(in oklab, var(--section-color) 78%, var(--card)); }
 .skip-link { position: fixed; top: 0.75rem; left: 50%; z-index: 100; transform: translate(-50%, -200%); padding: 0.75rem 1rem; color: var(--primary-foreground); background: var(--primary); border-radius: var(--radius); }
 .skip-link:focus { transform: translate(-50%, 0); }

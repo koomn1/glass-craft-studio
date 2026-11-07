@@ -9,4 +9,6 @@
 - Main navigation and chrome use bundled Google Material Symbols Rounded SVGs; preserve each source viewBox so icons render without a font download.
 - Section accent colors use semantic CSS tokens scoped by data-tone, with navigation metadata defining section identity.
 - Visitor counts use Lovable built-in Analytics; never expose analytics credentials or fabricate public counters.
-- Gate spatial motion through the reactive `useSpatialMotion` policy (desktop, fine hover pointer, no reduced-motion); keep transitions transform/opacity-only and layer hints scoped to moving surfaces to avoid mobile GPU pressure.
+- Gate spatial motion through reactive `useSpatialMotion` (no reduced-motion); restore rich glass on all screen sizes while honoring accessibility preferences.
+- Project estimator hands off a structured brief to WhatsApp or the visitor's email app; do not fabricate fixed prices without owner-provided rates.
+- SpatialInteractions owns opt-in Web Audio clicks and delegated magnetic motion so all portfolio controls share a single interaction policy.

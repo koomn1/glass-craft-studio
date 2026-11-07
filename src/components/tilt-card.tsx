@@ -12,7 +12,7 @@ interface TiltCardProps {
  * Lightweight CSS 3D tilt — no external lib. Uses requestAnimationFrame-free
  * direct style writes (transform only) so it stays on the compositor.
  */
-export function TiltCard({ children, className = "", intensity = 4, style }: TiltCardProps) {
+export function TiltCard({ children, className = "", intensity = 8, style }: TiltCardProps) {
   const ref = useRef<HTMLDivElement>(null);
   const enabled = useSpatialMotion();
 
