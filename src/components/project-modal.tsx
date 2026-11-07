@@ -50,7 +50,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.97, y: 8 }}
                 transition={{ type: "spring", stiffness: 320, damping: 30 }}
-                className="glass-strong fixed left-1/2 top-1/2 z-50 max-h-[88vh] w-[min(92vw,860px)] -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-3xl p-0 focus:outline-none"
+                className="photo-frame motion-surface fixed left-1/2 top-1/2 z-50 max-h-[88vh] w-[min(92vw,860px)] -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-3xl bg-card bg-none p-0 focus:outline-none"
               >
                 <header className="sticky top-0 z-10 flex items-start justify-between gap-4 border-b border-border/60 bg-background/95 p-6">
                   <div className="flex items-start gap-4">
