@@ -9,3 +9,4 @@
 - Main navigation and chrome use bundled Google Material Symbols Rounded SVGs; preserve each source viewBox so icons render without a font download.
 - Section accent colors use semantic CSS tokens scoped by data-tone, with navigation metadata defining section identity.
 - Visitor counts use Lovable built-in Analytics; never expose analytics credentials or fabricate public counters.
+- Gate spatial motion through the reactive `useSpatialMotion` policy (desktop, fine hover pointer, no reduced-motion); keep transitions transform/opacity-only and layer hints scoped to moving surfaces to avoid mobile GPU pressure.

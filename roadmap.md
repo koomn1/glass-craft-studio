@@ -8,3 +8,5 @@
 - [x] Refresh main icons with Google Material styling and varied section colors
 - [x] Make section labels and contact access easier to find on phones and desktop
 - [x] Verify built-in visitor history and provide access instructions
+- [x] Reduce live glass blur and keep transitions compositor-only
+- [x] Disable mobile 3D/parallax and verify navigation on desktop/mobile

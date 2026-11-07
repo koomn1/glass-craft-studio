@@ -1,4 +1,5 @@
 import { useEffect, type RefObject } from "react";
+import { useSpatialMotion } from "@/hooks/use-spatial-motion";
 
 /**
  * Writes smoothed pointer position (-1..1) to `--px` / `--py` on the element.
@@ -7,11 +8,15 @@ import { useEffect, type RefObject } from "react";
  * style invalidation never touches the rest of the page.
  */
 export function usePointerParallax(ref: RefObject<HTMLElement | null>, ease = 0.08) {
+  const enabled = useSpatialMotion();
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    if (!window.matchMedia("(pointer: fine)").matches) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!enabled) {
+      el.style.removeProperty("--px");
+      el.style.removeProperty("--py");
+      return;
+    }
 
     let tx = 0, ty = 0, cx = 0, cy = 0, raf = 0;
     let visible = true;
@@ -21,7 +26,7 @@ export function usePointerParallax(ref: RefObject<HTMLElement | null>, ease = 0.
       cy += (ty - cy) * ease;
       el.style.setProperty("--px", cx.toFixed(4));
       el.style.setProperty("--py", cy.toFixed(4));
-      raf = Math.abs(tx - cx) > 0.001 || Math.abs(ty - cy) > 0.001 ? requestAnimationFrame(tick) : 0;
+      raf = visible && (Math.abs(tx - cx) > 0.001 || Math.abs(ty - cy) > 0.001) ? requestAnimationFrame(tick) : 0;
     };
     const onMove = (e: PointerEvent) => {
       if (!visible) return;
@@ -30,13 +35,18 @@ export function usePointerParallax(ref: RefObject<HTMLElement | null>, ease = 0.
       if (!raf) raf = requestAnimationFrame(tick);
     };
 
-    const io = new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; });
+    const io = new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+      if (!visible) { cancelAnimationFrame(raf); raf = 0; }
+    });
     io.observe(el);
     window.addEventListener("pointermove", onMove, { passive: true });
     return () => {
       window.removeEventListener("pointermove", onMove);
       io.disconnect();
       cancelAnimationFrame(raf);
+      el.style.removeProperty("--px");
+      el.style.removeProperty("--py");
     };
-  }, [ref, ease]);
+  }, [ref, ease, enabled]);
 }
