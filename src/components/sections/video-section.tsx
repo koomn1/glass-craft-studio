@@ -1,6 +1,9 @@
 import { TiltCard } from "@/components/tilt-card";
 import { Reveal } from "@/components/reveal";
 import { Play, Film, Mic, Camera } from "lucide-react";
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { ProjectModal, type ProjectDetail } from "@/components/project-modal";
 
 const items = [
   { icon: Play, title: "Case of the Week", meta: "Short · 1:24", desc: "Bite-sized clinical reasoning for general practitioners." },
@@ -10,6 +13,7 @@ const items = [
 ];
 
 export function VideoSection() {
+  const [active, setActive] = useState<ProjectDetail | null>(null);
   return (
     <div className="space-y-8">
       <Reveal>
@@ -30,12 +34,13 @@ export function VideoSection() {
           return (
             <Reveal key={it.title} delay={i * 0.06}>
               <TiltCard intensity={6}>
+                <Button variant="ghost" aria-label={`Open project: ${it.title}`} onClick={() => setActive({ ...it, tag: it.meta, longDesc: it.desc, technologies: ["Visual storytelling", it.meta.split(" · ")[0]] })} className="block h-auto w-full whitespace-normal rounded-3xl p-0 text-left">
                 <article className="glass group relative aspect-[16/10] overflow-hidden rounded-3xl p-6">
                   <div
                     className="absolute inset-0 opacity-50 transition-opacity duration-500 group-hover:opacity-80"
                     style={{
                       background:
-                        "linear-gradient(135deg, oklch(0.52 0.09 195 / 0.35), oklch(0.91 0.05 60 / 0.25))",
+                        "linear-gradient(135deg, color-mix(in oklab, var(--primary) 35%, transparent), color-mix(in oklab, var(--coral) 25%, transparent))",
                     }}
                   />
                   <div className="relative flex h-full flex-col justify-between">
@@ -45,7 +50,7 @@ export function VideoSection() {
                         className="grid h-12 w-12 place-items-center rounded-full transition-transform group-hover:scale-110"
                         style={{ background: "linear-gradient(135deg, var(--teal), var(--teal-bright))" }}
                       >
-                        <Icon className="h-5 w-5 text-white" />
+                        <Icon className="h-5 w-5 text-primary-foreground" />
                       </span>
                     </div>
                     <div>
@@ -54,11 +59,13 @@ export function VideoSection() {
                     </div>
                   </div>
                 </article>
+                </Button>
               </TiltCard>
             </Reveal>
           );
         })}
       </div>
+      <ProjectModal project={active} onClose={() => setActive(null)} />
     </div>
   );
 }

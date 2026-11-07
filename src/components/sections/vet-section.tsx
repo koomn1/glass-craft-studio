@@ -13,6 +13,7 @@ import {
 import photoSchool from "@/assets/photos/photo-school.webp.asset.json";
 import photoWalk from "@/assets/photos/photo-walk.webp.asset.json";
 import photoStreet from "@/assets/photos/photo-street.webp.asset.json";
+import { Button } from "@/components/ui/button";
 
 const cases: ProjectDetail[] = [
   {
@@ -94,11 +95,11 @@ export function VetSection() {
           return (
             <Reveal key={c.title} delay={i * 0.05}>
               <TiltCard>
-                <button
+                <Button variant="ghost"
                   type="button"
                   onClick={() => setActive(c)}
                   aria-label={`Open case: ${c.title}`}
-                  className="group block h-full w-full text-left rounded-3xl focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                  className="group block h-full w-full whitespace-normal p-0 text-left rounded-3xl focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                 >
                   <article className="glass h-full rounded-3xl p-6">
                     <div
@@ -110,7 +111,7 @@ export function VetSection() {
                     <h3 className="text-lg font-semibold">{c.title}</h3>
                     <p className="mt-2 text-sm text-muted-foreground">{c.desc}</p>
                   </article>
-                </button>
+                </Button>
               </TiltCard>
             </Reveal>
           );

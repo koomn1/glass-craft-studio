@@ -2,7 +2,6 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useRef, useState, type ComponentType } from "react";
 import { AnimatePresence, motion, MotionConfig, useReducedMotion } from "framer-motion";
 import { useSpatialMotion } from "@/hooks/use-spatial-motion";
-import portrait from "@/assets/photos/photo-sun.webp.asset.json";
 import { PawPrint, Cpu, Film, Sparkles, Wrench, Briefcase, Mail } from "@/components/material-icons";
 
 import { ThemeProvider } from "@/components/theme-provider";

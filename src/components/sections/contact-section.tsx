@@ -38,7 +38,7 @@ export function ContactSection() {
     <div className="space-y-8">
       <Reveal>
         <div className="flex flex-col gap-3">
-          <span className="eyebrow"><span className="eyebrow-num">07</span>Contact</span>
+          <span className="eyebrow"><span className="eyebrow-num">08</span>Contact</span>
           <h2 className="section-title">
             Get in <span className="text-gradient-teal">Touch</span>
           </h2>

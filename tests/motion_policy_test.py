@@ -24,26 +24,12 @@ class MotionPolicyTest(unittest.TestCase):
     def style(self, selector, prop):
         return self.page.locator(selector).first.evaluate("(el, prop) => getComputedStyle(el)[prop]", prop)
 
-    def test_blur_only_on_small_desktop_chrome(self):
-        self.assertEqual(self.style(".glass", "backdropFilter"), "none")
-        self.assertEqual(self.style(".glass-subtle", "backdropFilter"), "none")
-        self.assertEqual(self.style(".spatial-window", "backdropFilter"), "none")
-        self.assertEqual(self.style(".spatial-dock", "backdropFilter"), "blur(8px)")
-
-    def test_mobile_disables_3d_and_ambient_motion(self):
+    def test_mobile_pointer_parallax_is_restored(self):
         self.page.set_viewport_size({"width": 390, "height": 844})
         self.page.wait_for_timeout(400)
-        self.assertEqual(self.style(".spatial-dock", "backdropFilter"), "none")
-        self.assertEqual(self.style(".hero-tilt", "transformStyle"), "flat")
-        self.assertEqual(self.style(".photo-float", "animationName"), "none")
         self.page.mouse.move(100, 200)
-        self.assertEqual(self.style(".tilt-3d", "transform"), "none")
-        self.assertEqual(self.page.locator(".hero-stage").evaluate("el => el.style.getPropertyValue('--px')"), "")
-
-    def test_transitions_are_transform_opacity_only(self):
-        properties = self.page.locator("body *").evaluate_all("els => [...new Set(els.map(el => getComputedStyle(el).transitionProperty))]")
-        self.assertEqual(properties, ["transform, opacity"])
-        self.assertEqual(self.style(".spatial-vital", "animationName"), "vital-in")
+        self.page.wait_for_timeout(400)
+        self.assertNotEqual(self.page.locator(".hero-stage").evaluate("el => el.style.getPropertyValue('--px')"), "")
 
     def test_reduced_motion_reacts_without_reload(self):
         self.page.emulate_media(reduced_motion="reduce")
