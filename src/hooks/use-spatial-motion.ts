@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 export function useSpatialMotion() {
   const [enabled, setEnabled] = useState(false);
   useEffect(() => {
-    const media = window.matchMedia("(min-width: 768px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)");
+    const media = window.matchMedia("(prefers-reduced-motion: no-preference)");
     const update = () => setEnabled(media.matches);
     update();
     media.addEventListener("change", update);

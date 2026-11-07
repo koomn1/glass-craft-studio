@@ -20,6 +20,9 @@ import { ExperienceSection } from "@/components/sections/experience-section";
 import { ContactSection } from "@/components/sections/contact-section";
 import { AssistantSection } from "@/components/sections/assistant-section";
 import logo from "@/assets/yb-logo.webp.asset.json";
+import { Calculator } from "lucide-react";
+import { EstimatorSection } from "@/components/sections/estimator-section";
+import { SpatialInteractions, SoundToggle } from "@/components/spatial/spatial-interactions";
 
 const SITE_TITLE = "Dr. Youssef Badawy — Veterinary Medicine, AI & Storytelling";
 const SITE_DESC =
@@ -64,8 +67,6 @@ export const Route = createFileRoute("/")({
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: SITE_TITLE },
       { name: "twitter:description", content: SITE_DESC },
-      { property: "og:image", content: portrait.url },
-      { name: "twitter:image", content: portrait.url },
     ],
     links: [{ rel: "canonical", href: "/" }],
     scripts: [
@@ -75,7 +76,7 @@ export const Route = createFileRoute("/")({
   }),
   component: () => (
     <ThemeProvider>
-      <Index />
+      <SpatialInteractions><Index /></SpatialInteractions>
     </ThemeProvider>
   ),
 });
@@ -88,6 +89,7 @@ const TABS: DockItem[] = [
   { id: "skills", tone: "skills", label: "Skills", icon: Wrench },
   { id: "video", tone: "video", label: "Video", icon: Film },
   { id: "assistant", tone: "assistant", label: "Assistant", icon: Sparkles },
+  { id: "estimator", tone: "estimator", label: "Estimate", icon: Calculator },
   { id: "contact", tone: "contact", label: "Contact", icon: Mail },
 ];
 
@@ -98,6 +100,7 @@ const SECTIONS: Record<string, ComponentType> = {
   skills: SkillsSection,
   video: VideoSection,
   assistant: AssistantSection,
+  estimator: EstimatorSection,
   contact: ContactSection,
 };
 
@@ -159,7 +162,8 @@ function Index() {
           <span className="hidden sm:inline">Youssef Badawy</span>
         </a>
 
-        <div className="pointer-events-auto shrink-0">
+        <div className="pointer-events-auto flex shrink-0 items-center gap-2">
+          <SoundToggle />
           <ThemeToggle />
         </div>
       </header>

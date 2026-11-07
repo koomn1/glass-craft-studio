@@ -48,7 +48,7 @@ export function SpatialDock({ items, active, onChange }: SpatialDockProps) {
       <div
         role="tablist"
         aria-orientation="horizontal"
-        className="spatial-dock pointer-events-auto grid w-full max-w-3xl grid-cols-7 gap-0.5 rounded-3xl p-1.5 sm:gap-1 sm:p-2"
+        className="spatial-dock pointer-events-auto grid w-full max-w-3xl grid-cols-8 gap-0.5 rounded-3xl p-1.5 sm:gap-1 sm:p-2"
       >
         {items.map((item, i) => {
           const Icon = item.icon;
