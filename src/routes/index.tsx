@@ -1,6 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useRef, useState, type ComponentType } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion, MotionConfig, useReducedMotion } from "framer-motion";
+import { useSpatialMotion } from "@/hooks/use-spatial-motion";
+import portrait from "@/assets/photos/photo-sun.webp.asset.json";
 import { PawPrint, Cpu, Film, Sparkles, Wrench, Briefcase, Mail } from "@/components/material-icons";
 
 import { ThemeProvider } from "@/components/theme-provider";
@@ -62,6 +64,8 @@ export const Route = createFileRoute("/")({
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: SITE_TITLE },
       { name: "twitter:description", content: SITE_DESC },
+      { property: "og:image", content: portrait.url },
+      { name: "twitter:image", content: portrait.url },
     ],
     links: [{ rel: "canonical", href: "/" }],
     scripts: [
@@ -102,14 +106,15 @@ const spatialEase = [0.22, 0.9, 0.24, 1] as const;
 function Index() {
   const [[active, dir], setState] = useState<[string, number]>(["vet", 0]);
   const stageRef = useRef<HTMLDivElement>(null);
-  const reduce = useReducedMotion();
+  const spatialMotion = useSpatialMotion();
+  const reduce = useReducedMotion() || !spatialMotion;
 
   const idx = TABS.findIndex((t) => t.id === active);
   const current = TABS[idx];
   const Section = SECTIONS[active];
 
   const scrollToStage = () => {
-    stageRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    stageRef.current?.scrollIntoView({ behavior: reduce ? "instant" : "smooth", block: "start" });
   };
 
   const open = (id: string) => {
@@ -122,16 +127,17 @@ function Index() {
 
   const variants = {
     enter: (d: number) =>
-      reduce ? { opacity: 0 } : { opacity: 0, x: d * 90, z: -260, rotateY: d * -16, scale: 0.94 },
+      reduce ? { opacity: 0 } : { opacity: 0, x: d * 36, z: -80, rotateY: d * -5, scale: 0.98 },
     center: { opacity: 1, x: 0, z: 0, rotateY: 0, scale: 1 },
     exit: (d: number) =>
-      reduce ? { opacity: 0 } : { opacity: 0, x: d * -90, z: -260, rotateY: d * 16, scale: 0.94 },
+      reduce ? { opacity: 0 } : { opacity: 0, x: d * -36, z: -80, rotateY: d * 5, scale: 0.98 },
   };
 
   const prevTab = idx > 0 ? TABS[idx - 1] : undefined;
   const nextTab = idx < TABS.length - 1 ? TABS[idx + 1] : undefined;
 
   return (
+    <MotionConfig reducedMotion={reduce ? "always" : "user"}>
     <div className="relative min-h-screen">
       <a href="#portfolio-content" className="skip-link">Skip to portfolio</a>
       <SpatialBackdrop />
@@ -165,13 +171,14 @@ function Index() {
           <section className="spatial-stage section-scope relative pb-16" data-tone={current.tone} id={`panel-${active}`} role="tabpanel" aria-labelledby={`tab-${active}`}>
             <AnimatePresence mode="wait" custom={dir} initial={false}>
               <motion.div
+                className="motion-surface"
                 key={active}
                 custom={dir}
                 variants={variants}
                 initial="enter"
                 animate="center"
                 exit="exit"
-                transition={{ duration: reduce ? 0.2 : 0.55, ease: spatialEase }}
+                transition={{ duration: reduce ? 0.15 : 0.32, ease: spatialEase }}
                 style={{ transformOrigin: "50% 30%" }}
               >
                 <SpatialWindow
@@ -204,5 +211,6 @@ function Index() {
       <SpatialDock items={TABS} active={active} onChange={open} />
       <FloatingContact />
     </div>
+    </MotionConfig>
   );
 }

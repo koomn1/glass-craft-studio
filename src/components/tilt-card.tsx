@@ -1,4 +1,5 @@
 import { useRef, type ReactNode, type CSSProperties } from "react";
+import { useSpatialMotion } from "@/hooks/use-spatial-motion";
 
 interface TiltCardProps {
   children: ReactNode;
@@ -11,12 +12,13 @@ interface TiltCardProps {
  * Lightweight CSS 3D tilt — no external lib. Uses requestAnimationFrame-free
  * direct style writes (transform only) so it stays on the compositor.
  */
-export function TiltCard({ children, className = "", intensity = 8, style }: TiltCardProps) {
+export function TiltCard({ children, className = "", intensity = 4, style }: TiltCardProps) {
   const ref = useRef<HTMLDivElement>(null);
+  const enabled = useSpatialMotion();
 
   const handleMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const el = ref.current;
-    if (!el) return;
+    if (!el || !enabled) return;
     const rect = el.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width - 0.5;
     const y = (e.clientY - rect.top) / rect.height - 0.5;
@@ -35,7 +37,7 @@ export function TiltCard({ children, className = "", intensity = 8, style }: Til
       onMouseMove={handleMove}
       onMouseLeave={handleLeave}
       className={`tilt-3d ${className}`}
-      style={style}
+      style={{ ...style, transform: enabled ? undefined : "none" }}
     >
       {children}
     </div>
