@@ -46,8 +46,9 @@ export function SpatialInteractions({ children }: { children: ReactNode }) {
     };
     document.addEventListener("pointermove", move, { passive: true });
     document.addEventListener("pointerleave", reset);
+    document.addEventListener("pointerout", reset);
     window.addEventListener("blur", reset);
-    return () => { reset(); document.removeEventListener("pointermove", move); document.removeEventListener("pointerleave", reset); window.removeEventListener("blur", reset); };
+    return () => { reset(); document.removeEventListener("pointermove", move); document.removeEventListener("pointerleave", reset); document.removeEventListener("pointerout", reset); window.removeEventListener("blur", reset); };
   }, [spatial]);
   useEffect(() => () => { void audio.current?.close(); }, []);
   return <SoundContext.Provider value={{ enabled, toggle: () => setEnabled(value => !value) }}>{children}</SoundContext.Provider>;

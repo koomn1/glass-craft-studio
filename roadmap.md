@@ -10,7 +10,8 @@
 - [x] Verify built-in visitor history and provide access instructions
 - [x] Reduce live glass blur and keep transitions compositor-only
 - [x] Disable mobile 3D/parallax and verify navigation on desktop/mobile
-- [ ] Restore rich glass and spatial effects
-- [ ] Add project scope estimator with WhatsApp/email handoff
-- [ ] Extend project dialogs with case studies
-- [ ] Add opt-in sound and magnetic interactions; verify all flows
+- [x] Restore rich glass and spatial effects
+- [x] Add project scope estimator with WhatsApp/email handoff
+- [x] Extend project dialogs with case studies
+- [x] Add opt-in sound and magnetic interactions; verify all flows
+- [ ] Calculate owner-priced cost totals — waiting for project/service rates from owner
