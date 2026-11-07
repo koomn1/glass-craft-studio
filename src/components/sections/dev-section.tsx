@@ -95,7 +95,7 @@ export function DevSection() {
                 >
                   <article className="glass relative h-full overflow-hidden rounded-3xl p-6">
                     <div
-                      className="absolute -right-10 -top-10 h-32 w-32 rounded-full opacity-40 blur-2xl transition-opacity group-hover:opacity-70"
+                      className="absolute -right-10 -top-10 h-32 w-32 rounded-full opacity-30 transition-opacity group-hover:opacity-50"
                       style={{ background: "radial-gradient(circle, var(--teal-bright), transparent 70%)" }}
                       aria-hidden="true"
                     />
