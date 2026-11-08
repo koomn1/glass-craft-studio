@@ -496,3 +496,15 @@ button, a[href] { transition: transform 0.25s ease, opacity 0.2s ease, translate
 .skip-link:focus { transform: translate(-50%, 0); }
 .spatial-window { border-top-color: color-mix(in oklab, var(--primary) 40%, var(--window-edge)); }
 .dock-item:focus-visible .dock-tip { opacity: 1; }
+
+/* Extras: cursor glow, marquee, badge */
+.cursor-glow { position: fixed; left: 0; top: 0; z-index: 1; width: 400px; height: 400px; border-radius: 9999px; pointer-events: none; opacity: 0; transition: opacity .4s; will-change: transform; background: radial-gradient(circle, color-mix(in oklab, var(--teal-bright) 22%, transparent), transparent 65%); }
+.marquee { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+.marquee-track { display: flex; width: max-content; animation: marquee 40s linear infinite; will-change: transform; }
+.marquee:hover .marquee-track { animation-play-state: paused; }
+.marquee-row { display: flex; gap: .75rem; padding-inline-end: .75rem; }
+@keyframes marquee { to { transform: translate3d(-50%, 0, 0); } }
+@media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; } }
+.badge-card { background: color-mix(in oklab, var(--card) 72%, transparent); border: 1px solid color-mix(in oklab, var(--primary) 30%, var(--border)); box-shadow: 0 30px 60px -20px color-mix(in oklab, var(--primary) 45%, transparent), inset 0 1px 0 color-mix(in oklab, white 50%, transparent); backdrop-filter: blur(18px) saturate(150%); }
+[data-tone="connect"] { --section-color: var(--section-dev); }
+[data-tone="faq"] { --section-color: var(--section-assistant); }
