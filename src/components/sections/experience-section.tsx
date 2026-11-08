@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import { useSpatialMotion } from "@/hooks/use-spatial-motion";
 import { Reveal } from "@/components/reveal";
 import { FadeImg } from "@/components/fade-img";
+import { StatsCounters } from "@/components/extras/stats-counters";
+import { CareerTimeline } from "@/components/extras/career-timeline";
 import { Briefcase, Megaphone, Bot, Truck, Sparkles, HeartHandshake } from "lucide-react";
 import photoCafe from "@/assets/photos/photo-cafe.webp.asset.json";
 import photoMoto from "@/assets/photos/photo-moto.webp.asset.json";
@@ -60,6 +62,10 @@ export function ExperienceSection() {
           </p>
         </div>
       </Reveal>
+
+      <Reveal><StatsCounters /></Reveal>
+
+      <Reveal><CareerTimeline /></Reveal>
 
       <Reveal delay={0.05}>
         <div className="glass relative overflow-hidden rounded-3xl p-6 sm:p-8">

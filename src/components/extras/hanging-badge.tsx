@@ -31,8 +31,6 @@ export function HangingBadge() {
         dragConstraints={{ left: -160, right: 160, top: -60, bottom: 140 }}
         dragTransition={{ bounceStiffness: 260, bounceDamping: 9 }}
         whileDrag={{ scale: 1.03, cursor: "grabbing" }}
-        animate={motionOn ? { rotate: [0, 3, -2, 0] } : undefined}
-        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
         style={{ x, y, rotate: motionOn ? swing : 0, top: STRAP - 8, transformOrigin: "50% 0%" }}
         className="badge-card absolute w-[250px] cursor-grab touch-none rounded-[1.75rem] p-4 text-center"
         aria-label={`${CONTACT.name} — ID badge`}
