@@ -12,3 +12,4 @@
 - Gate spatial motion through reactive `useSpatialMotion` (no reduced-motion); restore rich glass on all screen sizes while honoring accessibility preferences.
 - Project estimator hands off a structured brief to WhatsApp or the visitor's email app; do not fabricate fixed prices without owner-provided rates.
 - SpatialInteractions owns opt-in Web Audio clicks and delegated magnetic motion so all portfolio controls share a single interaction policy.
+- UI copy for language switching lives in `src/lib/i18n.tsx` (en/ar dictionaries); the provider sets html lang/dir so RTL comes from the document.

@@ -15,3 +15,7 @@
 - [x] Extend project dialogs with case studies
 - [x] Add opt-in sound and magnetic interactions; verify all flows
 - [ ] Calculate owner-priced cost totals — waiting for project/service rates from owner
+- [x] Hanging ID badge, skills ticker, reviews area, AR/EN switch, stats, booking, cursor glow, vCard QR, timeline + CV, FAQ
+- [ ] Real client reviews — waiting for owner-provided, approved testimonials
+- [ ] Full Arabic translation of older sections — needs owner-approved Arabic copy
+- [ ] Owner's own CV PDF — currently a printable CV generated from site info

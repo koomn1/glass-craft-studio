@@ -19,7 +19,13 @@ import { ExperienceSection } from "@/components/sections/experience-section";
 import { ContactSection } from "@/components/sections/contact-section";
 import { AssistantSection } from "@/components/sections/assistant-section";
 import logo from "@/assets/yb-logo.webp.asset.json";
-import { Calculator } from "lucide-react";
+import { Calculator, IdCard, HelpCircle } from "lucide-react";
+import { LanguageProvider, useI18n, type Dict } from "@/lib/i18n";
+import { LanguageToggle } from "@/components/extras/language-toggle";
+import { CursorGlow } from "@/components/extras/cursor-glow";
+import { Marquee } from "@/components/extras/marquee";
+import { ConnectSection } from "@/components/sections/connect-section";
+import { FaqSection } from "@/components/sections/faq-section";
 import { EstimatorSection } from "@/components/sections/estimator-section";
 import { SpatialInteractions, SoundToggle } from "@/components/spatial/spatial-interactions";
 
@@ -75,20 +81,24 @@ export const Route = createFileRoute("/")({
   }),
   component: () => (
     <ThemeProvider>
-      <SpatialInteractions><Index /></SpatialInteractions>
+      <LanguageProvider>
+        <SpatialInteractions><Index /></SpatialInteractions>
+      </LanguageProvider>
     </ThemeProvider>
   ),
 });
 
-// Order: Vet → Experience → AI/Dev → Skills → Video → Assistant → Contact
+// Order: Vet → Experience → Card → AI/Dev → Skills → Video → Assistant → Estimate → FAQ → Contact
 const TABS: DockItem[] = [
   { id: "vet", tone: "vet", label: "Vet", icon: PawPrint },
   { id: "experience", tone: "experience", label: "Experience", icon: Briefcase },
+  { id: "connect", tone: "connect", label: "Card", icon: IdCard },
   { id: "dev", tone: "dev", label: "AI & Dev", icon: Cpu },
   { id: "skills", tone: "skills", label: "Skills", icon: Wrench },
   { id: "video", tone: "video", label: "Video", icon: Film },
   { id: "assistant", tone: "assistant", label: "Assistant", icon: Sparkles },
   { id: "estimator", tone: "estimator", label: "Estimate", icon: Calculator },
+  { id: "faq", tone: "faq", label: "FAQ", icon: HelpCircle },
   { id: "contact", tone: "contact", label: "Contact", icon: Mail },
 ];
 
@@ -100,6 +110,8 @@ const SECTIONS: Record<string, ComponentType> = {
   video: VideoSection,
   assistant: AssistantSection,
   estimator: EstimatorSection,
+  connect: ConnectSection,
+  faq: FaqSection,
   contact: ContactSection,
 };
 
@@ -111,8 +123,10 @@ function Index() {
   const spatialMotion = useSpatialMotion();
   const reduce = useReducedMotion() || !spatialMotion;
 
-  const idx = TABS.findIndex((t) => t.id === active);
-  const current = TABS[idx];
+  const { t } = useI18n();
+  const tabs = TABS.map((tab) => ({ ...tab, label: t[tab.id as keyof Dict] as string }));
+  const idx = tabs.findIndex((x) => x.id === active);
+  const current = tabs[idx];
   const Section = SECTIONS[active];
 
   const scrollToStage = () => {
@@ -135,14 +149,15 @@ function Index() {
       reduce ? { opacity: 0 } : { opacity: 0, x: d * -36, z: -80, rotateY: d * 5, scale: 0.98 },
   };
 
-  const prevTab = idx > 0 ? TABS[idx - 1] : undefined;
-  const nextTab = idx < TABS.length - 1 ? TABS[idx + 1] : undefined;
+  const prevTab = idx > 0 ? tabs[idx - 1] : undefined;
+  const nextTab = idx < tabs.length - 1 ? tabs[idx + 1] : undefined;
 
   return (
     <MotionConfig reducedMotion={reduce ? "always" : "user"}>
     <div className="relative min-h-screen">
       <a href="#portfolio-content" className="skip-link">Skip to portfolio</a>
       <SpatialBackdrop />
+      <CursorGlow />
 
       {/* Header: logo + theme toggle only (navigation lives in the dock) */}
       <header className="pointer-events-none fixed top-3 left-3 right-3 z-50 flex items-center justify-between gap-2 sm:top-4 sm:left-4 sm:right-4">
@@ -162,6 +177,7 @@ function Index() {
         </a>
 
         <div className="pointer-events-auto flex shrink-0 items-center gap-2">
+          <LanguageToggle />
           <SoundToggle />
           <ThemeToggle />
         </div>
@@ -169,6 +185,7 @@ function Index() {
 
       <main className="pt-20 sm:pt-24">
         <Hero onExplore={scrollToStage} onOpen={open} />
+        <Marquee />
 
         <div id="portfolio-content" ref={stageRef} className="mx-auto max-w-6xl scroll-mt-20 px-3 pt-4 sm:px-4">
           <section className="spatial-stage section-scope relative pb-16" data-tone={current.tone} id={`panel-${active}`} role="tabpanel" aria-labelledby={`tab-${active}`}>
@@ -211,7 +228,7 @@ function Index() {
         </footer>
       </main>
 
-      <SpatialDock items={TABS} active={active} onChange={open} />
+      <SpatialDock items={tabs} active={active} onChange={open} />
       <FloatingContact />
     </div>
     </MotionConfig>
