@@ -331,7 +331,7 @@ export function AssistantSection() {
     <div className="space-y-8">
       <Reveal>
         <div className="flex flex-col gap-3">
-          <span className="eyebrow"><span className="eyebrow-num">07</span>Assistant</span>
+          <span className="eyebrow"><span className="eyebrow-num">06</span>Assistant</span>
           <h2 className="section-title">
             Ask <span className="text-gradient-teal">Youssef's AI</span>
           </h2>
