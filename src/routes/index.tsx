@@ -19,7 +19,7 @@ import { ExperienceSection } from "@/components/sections/experience-section";
 import { ContactSection } from "@/components/sections/contact-section";
 import { AssistantSection } from "@/components/sections/assistant-section";
 import logo from "@/assets/yb-logo.webp.asset.json";
-import { Calculator, IdCard, HelpCircle } from "lucide-react";
+import { Calculator, IdCard, HelpCircle, Code2 } from "lucide-react";
 import { LanguageProvider, useI18n, type Dict } from "@/lib/i18n";
 import { LanguageToggle } from "@/components/extras/language-toggle";
 import { CursorGlow } from "@/components/extras/cursor-glow";
@@ -27,6 +27,9 @@ import { Marquee } from "@/components/extras/marquee";
 import { ConnectSection } from "@/components/sections/connect-section";
 import { FaqSection } from "@/components/sections/faq-section";
 import { EstimatorSection } from "@/components/sections/estimator-section";
+import { PlaygroundSection } from "@/components/sections/playground-section";
+import { AssistantWidget } from "@/components/extras/assistant-widget";
+import { PitchButton } from "@/components/pitch/pitch-mode";
 import { SpatialInteractions, SoundToggle } from "@/components/spatial/spatial-interactions";
 
 const SITE_TITLE = "Dr. Youssef Badawy — Veterinary Medicine, AI & Storytelling";
@@ -96,6 +99,7 @@ const TABS: DockItem[] = [
   { id: "dev", tone: "dev", label: "AI & Dev", icon: Cpu },
   { id: "skills", tone: "skills", label: "Skills", icon: Wrench },
   { id: "video", tone: "video", label: "Video", icon: Film },
+  { id: "playground", tone: "dev", label: "Playground", icon: Code2 },
   { id: "assistant", tone: "assistant", label: "Assistant", icon: Sparkles },
   { id: "estimator", tone: "estimator", label: "Estimate", icon: Calculator },
   { id: "faq", tone: "faq", label: "FAQ", icon: HelpCircle },
@@ -108,6 +112,7 @@ const SECTIONS: Record<string, ComponentType> = {
   dev: DevSection,
   skills: SkillsSection,
   video: VideoSection,
+  playground: PlaygroundSection,
   assistant: AssistantSection,
   estimator: EstimatorSection,
   connect: ConnectSection,
@@ -177,6 +182,7 @@ function Index() {
         </a>
 
         <div className="pointer-events-auto flex shrink-0 items-center gap-2">
+          <PitchButton />
           <LanguageToggle />
           <SoundToggle />
           <ThemeToggle />
@@ -230,6 +236,7 @@ function Index() {
 
       <SpatialDock items={tabs} active={active} onChange={open} />
       <FloatingContact />
+      <AssistantWidget />
     </div>
     </MotionConfig>
   );
