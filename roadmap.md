@@ -19,3 +19,7 @@
 - [ ] Real client reviews — waiting for owner-provided, approved testimonials
 - [ ] Full Arabic translation of older sections — needs owner-approved Arabic copy
 - [ ] Owner's own CV PDF — currently a printable CV generated from site info
+
+- [x] AI persona widget + lead capture
+- [x] Live Playground tab
+- [x] Pitch Mode slideshow
