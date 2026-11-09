@@ -8,9 +8,10 @@ import { Reveal } from "@/components/reveal";
 type Msg = { role: "user" | "assistant"; content: string };
 
 const SUGGESTIONS = [
-  "What does Youssef work on?",
-  "Tell me about the AI projects.",
-  "How can I get in touch?",
+  "What services do you offer?",
+  "How much would a website cost?",
+  "How do you work with clients?",
+  "عايز أبدأ مشروع معاك",
 ];
 
 const markdownComponents = {
@@ -57,7 +58,7 @@ function StreamingSkeleton() {
   );
 }
 
-export function AssistantSection() {
+export function AssistantChat({ compact = false }: { compact?: boolean }) {
   const [messages, setMessages] = useState<Msg[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -177,28 +178,15 @@ export function AssistantSection() {
   const lastIsAssistant = messages[messages.length - 1]?.role === "assistant";
 
   return (
-    <div className="space-y-8">
-      <Reveal>
-        <div className="flex flex-col gap-3">
-          <span className="eyebrow"><span className="eyebrow-num">06</span>Assistant</span>
-          <h2 className="section-title">
-            AI <span className="text-gradient-teal">Assistant</span>
-          </h2>
-          <p className="max-w-2xl text-muted-foreground">
-            Ask anything about the work, the research, or how to collaborate.
-          </p>
-        </div>
-      </Reveal>
-
-      <Reveal delay={0.1}>
-        <div className="glass-strong relative overflow-hidden rounded-3xl">
+    <>
+      <div className={compact ? "relative flex min-h-0 flex-1 flex-col overflow-hidden" : "glass-strong relative overflow-hidden rounded-3xl"}>
           <div
             ref={scrollRef}
             role="log"
             aria-live="polite"
             aria-busy={loading}
             aria-label="Conversation"
-            className="max-h-[480px] min-h-[340px] space-y-4 overflow-y-auto p-6"
+            className={compact ? "min-h-0 flex-1 space-y-4 overflow-y-auto p-4" : "max-h-[480px] min-h-[340px] space-y-4 overflow-y-auto p-6"}
           >
             {messages.length === 0 && (
               <div className="flex h-full min-h-[280px] flex-col items-center justify-center gap-5 text-center">
@@ -206,7 +194,7 @@ export function AssistantSection() {
                   <Sparkles className="h-6 w-6 text-white" aria-hidden="true" />
                 </span>
                 <p className="max-w-sm text-sm text-muted-foreground">
-                  Hi — I'm trained on Youssef's portfolio. Try one of these:
+                  Hi — I'm Youssef's AI assistant. Ask about services, pricing or leave your details:
                 </p>
                 <div className="flex flex-wrap justify-center gap-2">
                   {SUGGESTIONS.map((s) => (
@@ -333,8 +321,26 @@ export function AssistantSection() {
               </button>
             )}
           </form>
+      </div>
+    </>
+  );
+}
+
+export function AssistantSection() {
+  return (
+    <div className="space-y-8">
+      <Reveal>
+        <div className="flex flex-col gap-3">
+          <span className="eyebrow"><span className="eyebrow-num">06</span>Assistant</span>
+          <h2 className="section-title">
+            Ask <span className="text-gradient-teal">Youssef's AI</span>
+          </h2>
+          <p className="max-w-2xl text-muted-foreground">
+            Services, ballpark pricing, how projects run — and leave your details so Youssef can follow up.
+          </p>
         </div>
       </Reveal>
+      <Reveal delay={0.1}><AssistantChat /></Reveal>
     </div>
   );
 }

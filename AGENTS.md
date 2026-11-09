@@ -13,3 +13,6 @@
 - Project estimator hands off a structured brief to WhatsApp or the visitor's email app; do not fabricate fixed prices without owner-provided rates.
 - SpatialInteractions owns opt-in Web Audio clicks and delegated magnetic motion so all portfolio controls share a single interaction policy.
 - UI copy for language switching lives in `src/lib/i18n.tsx` (en/ar dictionaries); the provider sets html lang/dir so RTL comes from the document.
+- AI persona: one `/api/chat` system prompt powers both the Assistant tab and the corner `AssistantWidget`; leads are handed off to WhatsApp/email via `src/lib/lead.ts` (no storage) and the bot never quotes fixed prices.
+- Live Playground runs demos in a `sandbox="allow-scripts"` iframe via srcDoc so visitor code can't touch the site.
+- Pitch Mode is a fullscreen overlay (`src/components/pitch/pitch-mode.tsx`) with its own slide list, not a separate route.

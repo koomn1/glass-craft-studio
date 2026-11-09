@@ -6,7 +6,7 @@ const KEY = "portfolio-lang";
 const dict = {
   en: {
     vet: "Vet", experience: "Experience", dev: "AI & Dev", skills: "Skills", video: "Video", assistant: "Assistant",
-    estimator: "Estimate", contact: "Contact", connect: "Card", faq: "FAQ",
+    playground: "Playground", estimator: "Estimate", contact: "Contact", connect: "Card", faq: "FAQ",
     toolbelt: "Tools & skills I work with",
     statsTitle: "By the numbers", statVolunteer: "Years volunteering", statFreelance: "Years freelancing",
     statSkills: "Core skills", statTools: "AI tools mastered",
@@ -36,7 +36,7 @@ const dict = {
   },
   ar: {
     vet: "بيطري", experience: "الخبرة", dev: "ذكاء وبرمجة", skills: "المهارات", video: "فيديو", assistant: "المساعد",
-    estimator: "التكلفة", contact: "تواصل", connect: "الكارت", faq: "أسئلة",
+    playground: "المعمل", estimator: "التكلفة", contact: "تواصل", connect: "الكارت", faq: "أسئلة",
     toolbelt: "الأدوات والمهارات اللي بشتغل بيها",
     statsTitle: "بالأرقام", statVolunteer: "سنين تطوع", statFreelance: "سنين عمل حر",
     statSkills: "مهارات أساسية", statTools: "أدوات ذكاء اصطناعي",
