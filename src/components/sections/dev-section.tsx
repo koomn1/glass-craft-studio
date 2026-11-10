@@ -7,8 +7,9 @@ import { Brain, Code2, Sparkles, Workflow, Database, Cpu } from "lucide-react";
 import photoHotel from "@/assets/photos/photo-hotel.webp.asset.json";
 import photoMirror2 from "@/assets/photos/photo-mirror2.webp.asset.json";
 import { Button } from "@/components/ui/button";
+import { usePortfolio, toDetail } from "@/lib/portfolio";
 
-const projects: ProjectDetail[] = [
+const fallbackProjects: ProjectDetail[] = [
   {
     icon: Brain,
     title: "Clinical Decision Assistant",
@@ -73,6 +74,8 @@ const projects: ProjectDetail[] = [
 
 export function DevSection() {
   const [active, setActive] = useState<ProjectDetail | null>(null);
+  const { data } = usePortfolio("project");
+  const projects = data ? data.map(toDetail) : fallbackProjects;
 
   return (
     <div className="space-y-8">
@@ -92,7 +95,7 @@ export function DevSection() {
         {projects.map((p, i) => {
           const Icon = p.icon;
           return (
-            <Reveal key={p.title} delay={i * 0.05}>
+            <Reveal key={`${p.title}-${i}`} delay={i * 0.05}>
               <TiltCard>
                 <Button variant="ghost"
                   type="button"

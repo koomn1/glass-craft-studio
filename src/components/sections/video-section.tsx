@@ -4,8 +4,9 @@ import { Play, Film, Mic, Camera } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ProjectModal, type ProjectDetail } from "@/components/project-modal";
+import { usePortfolio, toDetail } from "@/lib/portfolio";
 
-const items = [
+const fallbackItems = [
   { icon: Play, title: "Case of the Week", meta: "Short · 1:24", desc: "Bite-sized clinical reasoning for general practitioners." },
   { icon: Film, title: "Behind the Surgery", meta: "Film · 6:40", desc: "A cinematic look at a soft-tissue procedure, narrated step by step." },
   { icon: Mic, title: "Vet × Tech Podcast", meta: "Audio · 32:11", desc: "Conversations on AI tooling in everyday veterinary practice." },
@@ -14,6 +15,10 @@ const items = [
 
 export function VideoSection() {
   const [active, setActive] = useState<ProjectDetail | null>(null);
+  const { data } = usePortfolio("video");
+  const items: ProjectDetail[] = data
+    ? data.map(toDetail)
+    : fallbackItems.map((it) => ({ ...it, tag: it.meta, longDesc: it.desc, technologies: ["Visual storytelling", it.meta.split(" · ")[0]] }));
   return (
     <div className="space-y-8">
       <Reveal>
@@ -32,9 +37,9 @@ export function VideoSection() {
         {items.map((it, i) => {
           const Icon = it.icon;
           return (
-            <Reveal key={it.title} delay={i * 0.06}>
+            <Reveal key={`${it.title}-${i}`} delay={i * 0.06}>
               <TiltCard intensity={6}>
-                <Button variant="ghost" aria-label={`Open project: ${it.title}`} onClick={() => setActive({ ...it, tag: it.meta, longDesc: it.desc, technologies: ["Visual storytelling", it.meta.split(" · ")[0]] })} className="block h-auto w-full whitespace-normal rounded-3xl p-0 text-left">
+                <Button variant="ghost" aria-label={`Open project: ${it.title}`} onClick={() => setActive(it)} className="block h-auto w-full whitespace-normal rounded-3xl p-0 text-left">
                 <article className="glass group relative aspect-[16/10] overflow-hidden rounded-3xl p-6">
                   <div
                     className="absolute inset-0 opacity-50 transition-opacity duration-500 group-hover:opacity-80"
@@ -45,7 +50,7 @@ export function VideoSection() {
                   />
                   <div className="relative flex h-full flex-col justify-between">
                     <div className="flex items-center justify-between">
-                      <span className="glass-subtle rounded-full px-3 py-1 text-xs">{it.meta}</span>
+                      <span className="glass-subtle rounded-full px-3 py-1 text-xs">{it.tag}</span>
                       <span
                         className="grid h-12 w-12 place-items-center rounded-full transition-transform group-hover:scale-110"
                         style={{ background: "linear-gradient(135deg, var(--teal), var(--teal-bright))" }}
