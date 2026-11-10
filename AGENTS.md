@@ -16,3 +16,4 @@
 - AI persona: one `/api/chat` system prompt powers both the Assistant tab and the corner `AssistantWidget`; leads are handed off to WhatsApp/email via `src/lib/lead.ts` (no storage) and the bot never quotes fixed prices.
 - Live Playground runs demos in a `sandbox="allow-scripts"` iframe via srcDoc so visitor code can't touch the site.
 - Pitch Mode is a fullscreen overlay (`src/components/pitch/pitch-mode.tsx`) with its own slide list, not a separate route.
+- Projects and videos live in the `portfolio_items` table (kind = project|video); sections read published rows via `usePortfolio` with realtime refresh and static fallback, and `/admin` (under `_authenticated`) edits them — admin rights come only from `user_roles`/`has_role`, enforced by RLS.
